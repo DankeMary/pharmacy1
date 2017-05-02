@@ -1,15 +1,26 @@
 #pragma once
+#include <string>
 
 class Med
 {
-public:
+public:	
+	int farmNum;
+	std::string name;
+	int quantity;
+	bool available;
+	double price;
+	Date arrival;
+	int shelfLife;
 	Med();
 	~Med();
 };
 
-class Date {	
+class Date {
+public:
 	int day;
 	int month;
 	int year; 
+	Date();
+	Date getDate();
 };
 
