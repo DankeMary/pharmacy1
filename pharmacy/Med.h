@@ -12,6 +12,7 @@ public:
 	Date arrival;
 	int shelfLife;
 	Med();
+	Med(int farmNumTag, std::string nameTag, int quantTag, bool availTag, double priceTag, Date arriveTag, int lifeTag);
 	~Med();
 };
 
