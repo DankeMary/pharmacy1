@@ -13,6 +13,7 @@ public:
 	int shelfLife;
 	Med();
 	Med(int farmNumTag, std::string nameTag, int quantTag, bool availTag, double priceTag, Date arriveTag, int lifeTag);
+	void getData();
 	~Med();
 };
 
@@ -22,6 +23,6 @@ public:
 	int month;
 	int year; 
 	Date();
-	Date getDate();
+	void getDate();
 };
 
