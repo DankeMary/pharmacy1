@@ -1,28 +1,31 @@
 #include "stdafx.h"
 #include "Med.h"
 #include <iostream>
+#include <string>
 
 using namespace std;
+
+//class Med and Med Utils
 Med::Med() 
 {
 	farmNum = 0;
 	name = "";
 	quantity = 0;
-	available = false;
+	available = '-';
 	price = 0.0;
 	arrival = Date();
 	shelfLife = 0;	
 }
-Med::Med(int farmNumTag, std::string nameTag, int quantTag, bool availTag, double priceTag, Date arriveTag, int lifeTag)
+Med::Med(int farmNumTag, string nameTag, int quantTag, char availTag, double priceTag, Date arriveTag, int lifeTag)
 {
-	farmNum = farmNumTag;
-	name = nameTag;
-	quantity = quantTag;
-	available = availTag;
-	price = priceTag;
-	arrival = Date(); //???
-	arrival = arriveTag;
-	shelfLife = lifeTag;
+	this->farmNum = farmNumTag;
+	this->name = nameTag;
+	this->quantity = quantTag;
+	this->available = availTag;
+	this->price = priceTag;
+	this->arrival = Date(); //???
+	this->arrival = arriveTag;
+	this->shelfLife = lifeTag;
 }
 
 
@@ -30,6 +33,13 @@ Med::~Med()
 {
 }
 
+bool Med::operator==(const Med& other) const {
+	return this->name == other.name;
+}
+
+bool Med::operator!=(const Med& other) const {
+	return !(*this == other);
+}
 
 
 void Med::getData()
@@ -56,7 +66,18 @@ void Med::getData()
 	cin >> shelfLife;
 }
 
+std::ostream& operator<<(std::ostream &os, const Med &med) {
+	os << "Номер аптеки: "<< med.farmNum << "\n" <<
+		"Название лекарства: " << med.name << "\n" <<
+		"Количество: " << med.quantity << "\n" <<
+		"Наличие: " << med.available << "\n" <<
+		"Цена: " << med.price << "\n" <<
+		"Дата поступления: " << med.arrival << "\n" <<
+		"Срок хранения: " << med.shelfLife << "(мес.)" << "\n";
+	return os;
+}
 
+//class Date and Date Utils
 Date::Date()
 {
 	day = 0;
@@ -91,4 +112,8 @@ void Date::getDate() {
 		if (year < 1900 || year > 2020)
 			cout << "Ошибка! Повторите ввод" << endl;
 	}
+}
+std::ostream& operator<<(std::ostream &os, const Date &date)
+{
+	os << date.day << "." << date.month << "." << date.year;
 }
