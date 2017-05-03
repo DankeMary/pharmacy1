@@ -2,11 +2,3 @@
 #include "PharmacyDataBase.h"
 
 
-PharmacyDataBase::PharmacyDataBase()
-{
-}
-
-
-PharmacyDataBase::~PharmacyDataBase()
-{
-}

@@ -19,14 +19,14 @@ Med::Med()
 }
 Med::Med(int farmNumTag, string nameTag, int quantTag, bool availTag, double priceTag, Date arriveTag, int lifeTag)
 {
-	this->farmNum = farmNumTag;
-	this->name = nameTag;
-	this->quantity = quantTag;
-	this->available = availTag;
-	this->price = priceTag;
-	this->arrival = Date(); //???
-	this->arrival = arriveTag;
-	this->shelfLife = lifeTag;
+	farmNum = farmNumTag;
+	name = nameTag;
+	quantity = quantTag;
+	available = availTag;
+	price = priceTag;
+	arrival = Date(); //???
+	arrival = arriveTag;
+	shelfLife = lifeTag;
 }
 
 
@@ -142,7 +142,7 @@ bool Date::operator==(const Date& other) const
 {
 	return (this->year == other.year) && (this->month == other.month) && (this->day == other.day);
 }
-bool Date::operator==(const Date& other) const
+bool Date::operator!=(const Date& other) const
 {
 	return !(*this == other);
 }
