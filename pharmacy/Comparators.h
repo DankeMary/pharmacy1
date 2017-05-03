@@ -27,3 +27,38 @@ class QuantityComparator
 			return m1.quantity < m2.quantity;
 		}
 };
+class AvailableComparator
+{
+public:
+	bool operator() (Med m1, Med m2)
+	{
+		return m1.available < m2.available;
+	}
+};
+
+class PriceComparator
+{
+public:
+	bool operator() (Med m1, Med m2)
+	{
+		return m1.price < m2.price;
+	}
+};
+
+class ArrivalComparator
+{
+public:
+	bool operator() (Med m1, Med m2)
+	{
+		return m1.arrival < m2.arrival;
+	}
+};
+
+class ShelfComparator
+{
+public:
+	bool operator() (Med m1, Med m2)
+	{
+		return m1.shelfLife < m2.shelfLife;
+	}
+};
