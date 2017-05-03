@@ -74,6 +74,65 @@ string getFileName(bool input)
 }
 
 
+int getInt(int min, int max) 
+{
+	int num;
+	string str;
+	while (true)
+	{
+		try {
+			getline(cin, str);
+			if (str == "")
+				return min - 1;
+			else
+			{
+				num = stoi(str);
+				if (num < min || num > max) 
+				{
+					cout << "Значение вне допустимого диапазона ( " << min << " ... " << max << " ) Повторите ввод " << endl;					
+				} else return num;
+			}
+		}
+		catch (exception) {
+			cout << "Введен неверный символ! Повторите ввод" << endl;
+		}
+	}
+	
+}
+
+double getDouble(double min, double max)
+{
+	double num;
+	string str;
+	while (true)
+	{
+		try {
+			getline(cin, str);
+			if (str == "")
+				return min - 1;
+			else
+			{
+				num = stod(str);
+				if (num < min || num > max)
+				{
+					cout << "Значение вне допустимого диапазона ( " << min << " ... " << max << " ) Повторите ввод " << endl;
+				}
+				else return num;
+			}
+		}
+		catch (exception) {
+			cout << "Введен неверный символ! Повторите ввод" << endl;
+		}
+	}
+
+}
+string getString()
+{
+	string str;
+	
+	getline(cin, str);
+	return str;
+}
 
 
 
