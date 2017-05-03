@@ -12,7 +12,7 @@ Med::Med()
 	farmNum = 0;
 	name = "";
 	quantity = 0;
-	available = '-';
+	available = false;
 	price = 0.0;
 	arrival = Date();
 	shelfLife = 0;	
@@ -56,9 +56,9 @@ void Med::getData()
 	getline(cin, str);
 	quantity = stoi(str);
 
-	cout << "Имеется ли лекарство в наличии? 1 - да, 0 - нет : ";
+	cout << "Имеется ли лекарство в наличии? + : да; - : нет : ";
 	getline(cin, str);
-	(stoi(str) == 0)? false : true;
+	available = boolFromString(str);
 
 	cout << "Введите стоимость 1 упаковки: ";
 	getline(cin, str);
@@ -76,7 +76,7 @@ std::ostream& operator<<(std::ostream &os, const Med &med) {
 	os << "Номер аптеки: "<< med.farmNum << "\n" <<
 		"Название лекарства: " << med.name << "\n" <<
 		"Количество: " << med.quantity << "\n" <<
-		"Наличие: " << boolAsString(med.available) << "\n" <<
+		"Наличие: " << boolToString(med.available) << "\n" <<
 		"Цена: " << med.price << "\n" <<
 		"Дата поступления: " << med.arrival << "\n" <<
 		"Срок хранения: " << med.shelfLife << "(мес.)" << "\n";
@@ -138,6 +138,26 @@ void Date::getDate() {
 			cout << "Ошибка! Повторите ввод" << endl;
 	}
 }
+bool operator<(const Date& other, const Date& other2) 
+{
+	if (other.year < other2.year)
+		return true;
+	else
+		if (other.year > other2.year)
+			return false;
+		else
+			if (other.month < other2.month)
+				return  true;
+			else
+				if (other.month > other2.month)
+					return false;
+				else 
+					if (other.day < other2.day)
+						return true;
+					else 
+						return false;
+}
+
 std::ostream& operator<<(std::ostream &os, const Date &date)
 {
 	os << date.day << "." << date.month << "." << date.year;
