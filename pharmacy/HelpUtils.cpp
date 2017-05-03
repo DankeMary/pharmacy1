@@ -14,7 +14,7 @@ string skipFieldsNames(istream &is)
 	while ((str.find(":") != -1) || str == "\t" || str == "\n" || str == " ")
 	{
 		is >> str;
-	}
+	} 
 	return str;
 }
 
