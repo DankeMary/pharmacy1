@@ -19,12 +19,12 @@ Med::Med()
 }
 Med::Med(int farmNumTag, string nameTag, int quantTag, bool availTag, double priceTag, Date arriveTag, int lifeTag)
 {
-	farmNum = farmNumTag;
+	this->farmNum = farmNumTag;
 	name = nameTag;
 	quantity = quantTag;
 	available = availTag;
 	price = priceTag;
-	arrival = Date(); //???
+	//arrival = Date(); //???
 	arrival = arriveTag;
 	shelfLife = lifeTag;
 }
@@ -71,14 +71,24 @@ void Med::getData()
 	getline(cin, str);
 	shelfLife = stoi(str);
 }
+std::ostream& operator<<(std::ostream &os, const Date &date)
+{
+	os << date.day << "." << date.month << "." << date.year;
+	return os;
+}
 
+std::istream& operator>>(std::istream &is, Date &date) {
+	char symb;
+	cin >> date.day >> symb >> date.month >> symb >> date.year;
+	return is;
+}
 std::ostream& operator<<(std::ostream &os, const Med &med) {
 	os << "Номер аптеки: "<< med.farmNum << "\n" <<
 		"Название лекарства: " << med.name << "\n" <<
 		"Количество: " << med.quantity << "\n" <<
 		"Наличие: " << boolToString(med.available) << "\n" <<
 		"Цена: " << med.price << "\n" <<
-		"Дата поступления: " << med.arrival << "\n" <<
+		"Дата поступления: " << med.arrival << "\n" << // Ты же не определила потоковой операции
 		"Срок хранения: " << med.shelfLife << "(мес.)" << "\n";
 	return os;
 }
@@ -167,12 +177,3 @@ bool operator<(const Date& other, const Date& other2)
 						return false;
 }
 
-std::ostream& operator<<(std::ostream &os, const Date &date)
-{
-	os << date.day << "." << date.month << "." << date.year;
-}
-
-std::istream& operator>>(std::istream &is, Date &date) {
-	char symb;
-	cin >> date.day >> symb >> date.month >> symb >> date.year;
-}

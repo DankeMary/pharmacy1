@@ -1,7 +1,20 @@
 #pragma once
 #include <string>
+#include <ctime>
 
 using namespace std;
+
+class Date {
+public:
+	int day;
+	int month;
+	int year;
+	Date();
+	void getDate();
+	friend bool operator<(const Date& other, const Date& other2);
+	bool operator==(const Date& other) const;
+	bool operator!=(const Date& other) const;
+};
 
 class Med
 {
@@ -21,15 +34,5 @@ class Med
 		bool operator!=(const Med& other) const;
 };
 
-class Date {
-public:
-	int day;
-	int month;
-	int year; 
-	Date();
-	void getDate();
-	friend bool operator<(const Date& other, const Date& other2);
-	bool operator==(const Date& other) const;
-	bool operator!=(const Date& other) const;
-};
+
 

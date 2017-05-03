@@ -39,11 +39,11 @@ Date dateFromString(string str)
 	{
 		i++;
 	}
-	date.day = stod(str.substr(i, 2));
+	date.day = stoi(str.substr(i, 2));
 	i += 3;
-	date.month = stod(str.substr(i, 2));
+	date.month = stoi(str.substr(i, 2));
 	i += 3;
-	date.year = stod(str.substr(i, 4));
+	date.year = stoi(str.substr(i, 4));
 	return date;
 }
 

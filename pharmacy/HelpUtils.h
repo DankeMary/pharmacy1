@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "Med.h"
 
 using namespace std;
 

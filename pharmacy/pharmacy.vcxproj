@@ -149,6 +149,7 @@
     <ClInclude Include="HelpUtils.h" />
     <ClInclude Include="Med.h" />
     <ClInclude Include="PharmacyDataBase.h" />
+    <ClInclude Include="Sets.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -158,6 +159,7 @@
     <ClCompile Include="Med.cpp" />
     <ClCompile Include="pharmacy.cpp" />
     <ClCompile Include="PharmacyDataBase.cpp" />
+    <ClCompile Include="Sets.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
