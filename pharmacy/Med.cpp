@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Med.h"
+#include "HelpUtils.h"
 #include <iostream>
 #include <string>
 
@@ -16,7 +17,7 @@ Med::Med()
 	arrival = Date();
 	shelfLife = 0;	
 }
-Med::Med(int farmNumTag, string nameTag, int quantTag, char availTag, double priceTag, Date arriveTag, int lifeTag)
+Med::Med(int farmNumTag, string nameTag, int quantTag, bool availTag, double priceTag, Date arriveTag, int lifeTag)
 {
 	this->farmNum = farmNumTag;
 	this->name = nameTag;
@@ -43,33 +44,39 @@ bool Med::operator!=(const Med& other) const {
 
 void Med::getData()
 {
+	string str;
 	cout << "Введите номер аптеки: ";
-	cin >> farmNum;
+	getline(cin, str);
+	farmNum = stoi(str);
 
 	cout << "Введите название лекарства: ";
-	cin >> name;
+	getline(cin, name);
 
 	cout << "Введите количество упаковок ";
-	cin >> quantity;
+	getline(cin, str);
+	quantity = stoi(str);
 
 	cout << "Имеется ли лекарство в наличии? 1 - да, 0 - нет : ";
-	cin >> available;
+	getline(cin, str);
+	(stoi(str) == 0)? false : true;
 
 	cout << "Введите стоимость 1 упаковки: ";
-	cin >> price;
+	getline(cin, str);
+	price =  stod(str);
 
 	cout << "Введите дату поступления в аптеку ";
 	arrival.getDate();
 
 	cout << "Введите срок хранения: ";
-	cin >> shelfLife;
+	getline(cin, str);
+	shelfLife = stoi(str);
 }
 
 std::ostream& operator<<(std::ostream &os, const Med &med) {
 	os << "Номер аптеки: "<< med.farmNum << "\n" <<
 		"Название лекарства: " << med.name << "\n" <<
 		"Количество: " << med.quantity << "\n" <<
-		"Наличие: " << med.available << "\n" <<
+		"Наличие: " << boolAsString(med.available) << "\n" <<
 		"Цена: " << med.price << "\n" <<
 		"Дата поступления: " << med.arrival << "\n" <<
 		"Срок хранения: " << med.shelfLife << "(мес.)" << "\n";
@@ -80,13 +87,13 @@ std::ostream& operator<<(std::ostream &os, const Med &med) {
 std::istream& operator>>(std::istream &is, Med &med) {
 	try
 	{
-		cin >> med.farmNum;
-		cin >> med.name;
-		cin >> med.quantity;
-		cin >> med.available;
-		cin >> med.price;
-		cin >> med.arrival;
-		cin >> med.shelfLife;
+		med.farmNum = stoi(skipFieldsNames(is));
+		med.name = skipFieldsNames(is);
+		med.quantity = stoi(skipFieldsNames(is));
+		med.available = boolFromString(skipFieldsNames(is));
+		med.price = stod(skipFieldsNames(is));
+		med.arrival = dateFromString(skipFieldsNames(is));
+		med.shelfLife = stoi(skipFieldsNames(is));
 	}
 	catch (const std::exception& e)
 	{

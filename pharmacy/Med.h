@@ -7,12 +7,12 @@ public:
 	int farmNum;
 	string name;
 	int quantity;
-	char available;
+	bool available;
 	double price;
 	Date arrival;
 	int shelfLife;
 	Med();
-	Med(int farmNumTag, string nameTag, int quantTag, char availTag, double priceTag, Date arriveTag, int lifeTag);
+	Med(int farmNumTag, string nameTag, int quantTag, bool availTag, double priceTag, Date arriveTag, int lifeTag);
 	~Med();
 	void getData();
 	bool operator==(const Med& other) const;
