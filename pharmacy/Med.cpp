@@ -6,6 +6,83 @@
 
 using namespace std;
 
+//class Date and Date Utils
+Date::Date()
+{
+	day = 0;
+	month = 0;
+	year = 0;
+}
+
+void Date::getDate() {
+	/*d.day = 0;
+	d.month = 0;
+	d.year = 0;*/
+	cout << "Введите день: ";
+	while (day < 1 || day > 30)
+	{
+		cin >> day;
+		if (day < 1 || day > 30)
+			cout << "Ошибка! Повторите ввод" << endl;
+	}
+
+	cout << "Введите месяц: ";
+	while (month < 1 || month > 12)
+	{
+		cin >> month;
+		if (month < 1 || month > 12)
+			cout << "Ошибка! Повторите ввод" << endl;
+	}
+
+	cout << "Введите год: ";
+	while (year < 1970 || year > 2020)
+	{
+		cin >> year;
+		if (year < 1900 || year > 2020)
+			cout << "Ошибка! Повторите ввод" << endl;
+	}
+}
+bool Date::operator==(const Date& other) const
+{
+	return (this->year == other.year) && (this->month == other.month) && (this->day == other.day);
+}
+bool Date::operator!=(const Date& other) const
+{
+	return !(*this == other);
+}
+
+bool operator<(const Date& other, const Date& other2)
+{
+	if (other.year < other2.year)
+		return true;
+	else
+		if (other.year > other2.year)
+			return false;
+		else
+			if (other.month < other2.month)
+				return  true;
+			else
+				if (other.month > other2.month)
+					return false;
+				else
+					if (other.day < other2.day)
+						return true;
+					else
+						return false;
+}
+
+std::ostream& operator<<(std::ostream &os, const Date &date)
+{
+	os << date.day << "." << date.month << "." << date.year;
+	return os;
+}
+
+std::istream& operator>>(std::istream &is, Date &date) {
+	char symb;
+	cin >> date.day >> symb >> date.month >> symb >> date.year;
+	return is;
+}
+
 //class Med and Med Utils
 Med::Med() 
 {
@@ -71,17 +148,7 @@ void Med::getData()
 	getline(cin, str);
 	shelfLife = stoi(str);
 }
-std::ostream& operator<<(std::ostream &os, const Date &date)
-{
-	os << date.day << "." << date.month << "." << date.year;
-	return os;
-}
 
-std::istream& operator>>(std::istream &is, Date &date) {
-	char symb;
-	cin >> date.day >> symb >> date.month >> symb >> date.year;
-	return is;
-}
 std::ostream& operator<<(std::ostream &os, const Med &med) {
 	os << "Номер аптеки: "<< med.farmNum << "\n" <<
 		"Название лекарства: " << med.name << "\n" <<
@@ -112,68 +179,5 @@ std::istream& operator>>(std::istream &is, Med &med) {
 }
 
 
-//class Date and Date Utils
-Date::Date()
-{
-	day = 0;
-	month = 0;
-	year = 0;
-}
 
-void Date::getDate() {
-	/*d.day = 0;
-	d.month = 0;
-	d.year = 0;*/
-	cout << "Введите день: ";
-	while (day < 1 || day > 30)
-	{
-		cin >> day;
-		if (day < 1 || day > 30)
-			cout << "Ошибка! Повторите ввод" << endl;
-	}
-
-	cout << "Введите месяц: ";
-	while (month < 1 || month > 12)
-	{
-		cin >> month;
-		if (month < 1 || month > 12)
-			cout << "Ошибка! Повторите ввод" << endl;
-	}
-
-	cout << "Введите год: ";
-	while (year < 1970 || year > 2020)
-	{
-		cin >> year;
-		if (year < 1900 || year > 2020)
-			cout << "Ошибка! Повторите ввод" << endl;
-	}
-}
-bool Date::operator==(const Date& other) const
-{
-	return (this->year == other.year) && (this->month == other.month) && (this->day == other.day);
-}
-bool Date::operator!=(const Date& other) const
-{
-	return !(*this == other);
-}
-
-bool operator<(const Date& other, const Date& other2) 
-{
-	if (other.year < other2.year)
-		return true;
-	else
-		if (other.year > other2.year)
-			return false;
-		else
-			if (other.month < other2.month)
-				return  true;
-			else
-				if (other.month > other2.month)
-					return false;
-				else 
-					if (other.day < other2.day)
-						return true;
-					else 
-						return false;
-}
 
