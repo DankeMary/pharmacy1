@@ -18,3 +18,12 @@ class NameComparator
 			return m1.name < m2.name;
 		}
 };
+
+class QuantityComparator
+{
+	public:
+		bool operator() (Med m1, Med m2)
+		{
+			return m1.quantity < m2.quantity;
+		}
+};
