@@ -138,6 +138,15 @@ void Date::getDate() {
 			cout << "Ошибка! Повторите ввод" << endl;
 	}
 }
+bool Date::operator==(const Date& other) const
+{
+	return (this->year == other.year) && (this->month == other.month) && (this->day == other.day);
+}
+bool Date::operator==(const Date& other) const
+{
+	return !(*this == other);
+}
+
 bool operator<(const Date& other, const Date& other2) 
 {
 	if (other.year < other2.year)

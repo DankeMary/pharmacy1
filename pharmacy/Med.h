@@ -28,5 +28,8 @@ public:
 	int year; 
 	Date();
 	void getDate();
+	friend bool operator<(const Date& other, const Date& other2);
+	bool operator==(const Date& other) const;
+	bool operator!=(const Date& other) const;
 };
 
