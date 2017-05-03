@@ -3,6 +3,7 @@
 #include "Med.h"
 #include <string>
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -46,7 +47,29 @@ Date dateFromString(string str)
 	return date;
 }
 
-
+string getFileName(bool input)
+{
+	string name;
+	fstream f;
+	cout << "Введите имя файла: ";
+	getline(cin, name);
+	while (name == "")
+	{
+		cout << "Имя файла не должно быть пустым! Повторите ввод";
+		getline(std::cin, name);
+	}
+	if (input) 
+	{		
+		f.open(name);
+		while (!f.is_open() && name != "") {
+			cout << "Файл не найден! Повторите ввод" << endl;
+			getline(cin, name);
+			f.open(name);
+		};
+		f.close();
+	}
+	return name;
+}
 
 void printMainMenu() {
 	std::cout << "\n" << std::endl;
@@ -102,4 +125,6 @@ void printActionMenu() {
 	std::cout << " 0-Выход" << std::endl;	
 	std::cout << "\n" << std::endl;
 }
+
+
 
