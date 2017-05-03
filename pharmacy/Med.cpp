@@ -41,7 +41,6 @@ bool Med::operator!=(const Med& other) const {
 	return !(*this == other);
 }
 
-
 void Med::getData()
 {
 	cout << "Введите номер аптеки: ";
@@ -76,6 +75,25 @@ std::ostream& operator<<(std::ostream &os, const Med &med) {
 		"Срок хранения: " << med.shelfLife << "(мес.)" << "\n";
 	return os;
 }
+
+
+std::istream& operator>>(std::istream &is, Med &med) {
+	try
+	{
+		cin >> med.farmNum;
+		cin >> med.name;
+		cin >> med.quantity;
+		cin >> med.available;
+		cin >> med.price;
+		cin >> med.arrival;
+		cin >> med.shelfLife;
+	}
+	catch (const std::exception& e)
+	{
+	};
+	return is;
+}
+
 
 //class Date and Date Utils
 Date::Date()
@@ -116,4 +134,9 @@ void Date::getDate() {
 std::ostream& operator<<(std::ostream &os, const Date &date)
 {
 	os << date.day << "." << date.month << "." << date.year;
+}
+
+std::istream& operator>>(std::istream &is, Date &date) {
+	char symb;
+	cin >> date.day >> symb >> date.month >> symb >> date.year;
 }
