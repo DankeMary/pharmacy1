@@ -148,6 +148,7 @@
     <ClInclude Include="Comparators.h" />
     <ClInclude Include="HelpUtils.h" />
     <ClInclude Include="Med.h" />
+    <ClInclude Include="MenuUtils.h" />
     <ClInclude Include="PharmacyDataBase.h" />
     <ClInclude Include="Sets.h" />
     <ClInclude Include="stdafx.h" />
@@ -157,6 +158,7 @@
     <ClCompile Include="Comparators.cpp" />
     <ClCompile Include="HelpUtils.cpp" />
     <ClCompile Include="Med.cpp" />
+    <ClCompile Include="MenuUtils.cpp" />
     <ClCompile Include="pharmacy.cpp" />
     <ClCompile Include="PharmacyDataBase.cpp" />
     <ClCompile Include="Sets.cpp" />
