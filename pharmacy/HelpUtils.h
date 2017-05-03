@@ -1,5 +1,7 @@
 #pragma once
+#include <string>
 
+using namespace std;
 
 string skipFieldsNames(istream &is);
 string boolToString(bool b);
