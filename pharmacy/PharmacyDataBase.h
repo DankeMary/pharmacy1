@@ -19,5 +19,9 @@ class PharmacyDataBase
 		{
 
 		}
+		void addItem(T item)
+		{
+			mainV.push_back(item);
+		}
 };
 
