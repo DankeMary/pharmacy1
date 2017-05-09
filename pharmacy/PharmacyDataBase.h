@@ -161,7 +161,12 @@ class PharmacyDataBase
 		}
 		void getSetFarmNum(int aFarmNum) {
 			FarmNumSet set = OwnerFullNameAcc(aFarmNum);
-			for_each(vect.begin(), vect.end(), set);
+			for_each(mainV.begin(), mainV.end(), set);
+			setV = set.getSet();
+		}
+		void getSetName(string aName) {
+			NameSet set = NameSet(aName);
+			for_each(mainV.begin(), mainV.end(), set);
 			setV = set.getSet();
 		}
 };
