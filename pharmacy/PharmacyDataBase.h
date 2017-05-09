@@ -73,5 +73,25 @@ class PharmacyDataBase
 			return it != mainV.end();
 		}
 
+
+		bool binarySearchFarmNum(int aFarmNum, vector<Med>::iterator &it) {
+			if (mainV.begin() == mainV.end())
+				return false;
+			FarmNumComparator comp = FarmNumComparator();
+			sort(mainV.begin(), mainV.end(), comp);
+			T med = Med(aFarmNum, "", 0, false, 0.0, new Date(), 0);
+			it = lower_bound(mainV.begin(), mainV.end(), med, comp);
+			return it == mainV.end() ? false : med.farmNum == it->farmNum;
+		}
+		bool binarySearchName(string aName, vector<Med>::iterator &it) {
+			if (mainV.begin() == mainV.end())
+				return false;
+			NameComparator comp = NameComparator();
+			sort(mainV.begin(), mainV.end(), comp);
+			T med = Med(0, aName, 0, false, 0.0, new Date(), 0);
+			it = lower_bound(mainV.begin(), mainV.end(), med, comp);
+			return it == mainV.end() ? false : med.name == it->name;
+		}
+
 };
 
