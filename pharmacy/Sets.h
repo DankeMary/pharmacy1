@@ -15,7 +15,8 @@ class FarmNumSet
 		}
 		void addItem(Med med)
 		{
-			set->push_back(med);
+			if (farmNum == med.farmNum)
+				set->push_back(med);
 		}
 		vector<Med> getSet()
 		{
@@ -37,7 +38,8 @@ public:
 	}
 	void addItem(Med med)
 	{
-		set->push_back(med);
+		if (name == med.name)
+			set->push_back(med);
 	}
 	vector<Med> getSet()
 	{
@@ -60,7 +62,8 @@ public:
 
 	void addItem(Med med)
 	{
-		set->push_back(med);
+		if (quantity == med.quantity)
+			set->push_back(med);
 	}
 	vector<Med> getSet()
 	{
@@ -82,7 +85,8 @@ public:
 	}
 	void addItem(Med med)
 	{
-		set->push_back(med);
+		if (available == med.available)
+			set->push_back(med);
 	}
 	vector<Med> getSet()
 	{
@@ -105,7 +109,8 @@ public:
 
 	void addItem(Med med)
 	{
-		set->push_back(med);
+		if (price == med.price)
+			set->push_back(med);
 	}
 	vector<Med> getSet()
 	{
@@ -118,17 +123,18 @@ class DateSet
 {
 public:
 	vector<Med> *set;
-	Date date;
+	Date arrival;
 
 	DateSet(Date aDate)
 	{
-		date = aDate;
+		arrival = aDate;
 		set = new vector<Med>();
 	}
 
 	void addItem(Med med)
 	{
-		set->push_back(med);
+		if (arrival == med.arrival)
+			set->push_back(med);
 	}
 	vector<Med> getSet()
 	{
@@ -150,7 +156,8 @@ public:
 	}
 	void addItem(Med med)
 	{
-		set->push_back(med);
+		if (shelf == med.shelfLife)
+			set->push_back(med);
 	}
 	vector<Med> getSet()
 	{
