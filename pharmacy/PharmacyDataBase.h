@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-
+#include "Med.h"
 
 using namespace std;
 
@@ -39,6 +39,36 @@ class PharmacyDataBase
 
 		bool searchFarmNum(int aFarmNum, vector<Med>::iterator &it) {
 			FarmNumPredicate pred = FarmNumPredicate(aFarmNum);
+			it = find_if(mainV.begin(), mainV.end(), pred);
+			return it != mainV.end();
+		}
+		bool searchName(string aName, vector<Med>::iterator &it) {
+			NamePredicate pred = NamePredicate(aName);
+			it = find_if(mainV.begin(), mainV.end(), pred);
+			return it != mainV.end();
+		}
+		bool searchQuantity(int aQuantity, vector<Med>::iterator &it) {
+			QuantityPredicate pred = QuantityPredicate(aQuantity);
+			it = find_if(mainV.begin(), mainV.end(), pred);
+			return it != mainV.end();
+		}
+		bool searchAvailable(bool aAvailable, vector<Med>::iterator &it) {
+			AvailablePredicate pred = AvailablePredicate(aAvailable);
+			it = find_if(mainV.begin(), mainV.end(), pred);
+			return it != mainV.end();
+		}
+		bool searchPrice(double aPrice, vector<Med>::iterator &it) {
+			PricePredicate pred = PricePredicate(aPrice);
+			it = find_if(mainV.begin(), mainV.end(), pred);
+			return it != mainV.end();
+		}
+		bool searchArrival(Date aArrival, vector<Med>::iterator &it) {
+			ArrivalPredicate pred = ArrivalPredicate(aArrival);
+			it = find_if(mainV.begin(), mainV.end(), pred);
+			return it != mainV.end();
+		}
+		bool searchShelfLife(int aShelf, vector<Med>::iterator &it) {
+			ShelfPredicate pred = ShelfPredicate(aShelf);
 			it = find_if(mainV.begin(), mainV.end(), pred);
 			return it != mainV.end();
 		}

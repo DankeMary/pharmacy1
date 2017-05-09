@@ -17,10 +17,10 @@ class FarmNumPredicate{
 
 class NamePredicate {
 	protected: //????
-		std::string fName;
+		string fName;
 	public:
 		NamePredicate();
-		NamePredicate(std::string aName);
+		NamePredicate(string aName);
 		bool operator() (Med med);
 		bool operator() (Med med1, Med med2);
 };
