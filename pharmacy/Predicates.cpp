@@ -49,3 +49,17 @@ bool QuantityPredicate::operator()(Med med1, Med med2) {
 	return med1.quantity == med2.quantity;
 }
 
+//AvailablePredicate
+AvailablePredicate::AvailablePredicate() {}
+AvailablePredicate::AvailablePredicate(bool aAvailable)
+{
+	fAvailable = aAvailable;
+}
+
+bool AvailablePredicate::operator()(Med med) {
+	return fAvailable == med.available;
+}
+
+bool AvailablePredicate::operator()(Med med1, Med med2) {
+	return med1.available == med2.available;
+}

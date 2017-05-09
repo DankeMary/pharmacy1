@@ -35,3 +35,14 @@ public:
 	bool operator() (Med med1, Med med2);
 };
 
+class AvailablePredicate {
+protected:
+	bool fAvailable;
+public:
+	AvailablePredicate();
+	AvailablePredicate(bool aAvailable);
+	bool operator() (Med med);
+	bool operator() (Med med1, Med med2);
+};
+
+
