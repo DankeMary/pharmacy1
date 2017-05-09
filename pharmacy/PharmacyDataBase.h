@@ -9,6 +9,7 @@ class PharmacyDataBase
 {
 	private:
 		vector<T> mainV;
+		vector<T> setV;
 
 	public:
 		PharmacyDataBase()
@@ -157,6 +158,11 @@ class PharmacyDataBase
 				return false;
 			else
 				return  med.shelfLife == it->shelfLife;
+		}
+		void getSetFarmNum(int aFarmNum) {
+			FarmNumSet set = OwnerFullNameAcc(aFarmNum);
+			for_each(vect.begin(), vect.end(), set);
+			setV = set.getSet();
 		}
 };
 
