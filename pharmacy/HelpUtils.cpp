@@ -135,5 +135,38 @@ string getString()
 }
 
 
+Car inputCar(int number) {
+	std::string ownerFullName, firstName, secondName, lastName;
+	int modelCode;
+	std::string modelName;
+	int octaneRating;
+	int power;
+	double tankVolume;
+	double fullness;
+	double oilVolume;
+
+	std::cout << "Car" + (number != -1 ? ": " + std::to_string(number) : "") << std::endl;
+
+	std::cout << "Enter values\n";
+
+	std::cout << "Owner:\n";
+	lastName = inputString("Last name:\t");
+	firstName = inputString("First name:\t");
+	secondName = inputString("Second name:\t");
+	ownerFullName = lastName + " " + firstName + " " + secondName;
+
+	modelCode = inputInt("Code of Model: ");
+	modelName = inputString("Model name\t");
+	octaneRating = inputInt("Octane Rating: ");
+	power = inputInt("Power of engine: ");
+	tankVolume = inputDouble("Tank Volume: ");
+	fullness = inputDouble("Fullness of tank: ");
+	oilVolume = inputDouble("Oil Volume: ");
+
+	return Car(ownerFullName, modelCode, modelName, octaneRating, power, tankVolume, fullness, oilVolume);
+}
+
+
+
 
 

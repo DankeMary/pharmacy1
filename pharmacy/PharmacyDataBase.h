@@ -17,16 +17,10 @@ class PharmacyDataBase
 		}
 		~PharmacyDataBase()
 		{
-
 		}
 		void addItem(T item)
 		{
 			mainV.push_back(item);
-		}
-
-		bool findItem(T item, random_access_iterator_tag &it) {
-			it = find(mainV.begin(), mainV.end(), item);
-			return it != mainV.end();
 		}
 
 		bool findItem(T item) {
@@ -34,8 +28,20 @@ class PharmacyDataBase
 			return it != mainV.end();
 		}
 
+		bool findItem(T item, random_access_iterator_tag &it) {
+			it = find(mainV.begin(), mainV.end(), item);
+			return it != mainV.end();
+		}		
+
 		void removeItem(vector<Med>::iterator it) {
 			mainV.erase(it);
 		}
+
+		bool searchFarmNum(int aFarmNum, vector<Med>::iterator &it) {
+			FarmNumPredicate pred = FarmNumPredicate(aFarmNum);
+			it = find_if(mainV.begin(), mainV.end(), pred);
+			return it != mainV.end();
+		}
+
 };
 
