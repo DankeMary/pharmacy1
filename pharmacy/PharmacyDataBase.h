@@ -81,7 +81,10 @@ class PharmacyDataBase
 			sort(mainV.begin(), mainV.end(), comp);
 			T med = Med(aFarmNum, "", 0, false, 0.0, new Date(), 0);
 			it = lower_bound(mainV.begin(), mainV.end(), med, comp);
-			return it == mainV.end() ? false : med.farmNum == it->farmNum;
+			if (it == mainV.end())
+				return false;
+			else
+				return med.farmNum == it->farmNum;
 		}
 		bool binarySearchName(string aName, vector<Med>::iterator &it) {
 			if (mainV.begin() == mainV.end())
@@ -90,8 +93,34 @@ class PharmacyDataBase
 			sort(mainV.begin(), mainV.end(), comp);
 			T med = Med(0, aName, 0, false, 0.0, new Date(), 0);
 			it = lower_bound(mainV.begin(), mainV.end(), med, comp);
-			return it == mainV.end() ? false : med.name == it->name;
+			if (it == mainV.end())
+				return false;
+			else
+				return med.name == it->name;
 		}
-
+		bool binarySearchQuantity(int aQuantity, vector<Med>::iterator &it) {
+			if (mainV.begin() == mainV.end())
+				return false;
+			QuantityComparator comp = QuantityComparator();
+			sort(mainV.begin(), mainV.end(), comp);
+			T med = Med(0, "", aQuantity, false, 0.0, new Date(), 0);
+			it = lower_bound(mainV.begin(), mainV.end(), med, comp);
+			if (it == mainV.end())
+				return false;
+			else
+				return med.quantity == it->quantity;
+		}
+		bool binarySearchAvailable(int aAvailable, vector<Med>::iterator &it) {
+			if (mainV.begin() == mainV.end())
+				return false;
+			AvailableComparator comp = AvailableComparator();
+			sort(mainV.begin(), mainV.end(), comp);
+			T med = Med(0, "", 0, aAvailable, 0.0, new Date(), 0);
+			it = lower_bound(mainV.begin(), mainV.end(), med, comp);
+			if (it == mainV.end())
+				return false;
+			else
+				return  med.available == it->available;
+		}
 };
 
