@@ -33,3 +33,19 @@ bool NamePredicate::operator()(Med med) {
 bool NamePredicate::operator()(Med med1, Med med2) {
 	return med1.name == med2.name;
 }
+
+//QuantityPredicate
+QuantityPredicate::QuantityPredicate() {}
+QuantityPredicate::QuantityPredicate(int aQuantity)
+{
+	fQuantity = aQuantity;
+}
+
+bool QuantityPredicate::operator()(Med med) {
+	return fQuantity == med.quantity;
+}
+
+bool QuantityPredicate::operator()(Med med1, Med med2) {
+	return med1.quantity == med2.quantity;
+}
+
