@@ -110,7 +110,7 @@ class PharmacyDataBase
 			else
 				return med.quantity == it->quantity;
 		}
-		bool binarySearchAvailable(int aAvailable, vector<Med>::iterator &it) {
+		bool binarySearchAvailable(bool aAvailable, vector<Med>::iterator &it) {
 			if (mainV.begin() == mainV.end())
 				return false;
 			AvailableComparator comp = AvailableComparator();
@@ -121,6 +121,30 @@ class PharmacyDataBase
 				return false;
 			else
 				return  med.available == it->available;
+		}
+		bool binarySearchPrice(double aPrice, vector<Med>::iterator &it) {
+			if (mainV.begin() == mainV.end())
+				return false;
+			PriceComparator comp = PriceComparator();
+			sort(mainV.begin(), mainV.end(), comp);
+			T med = Med(0, "", 0, false, aPrice, new Date(), 0);
+			it = lower_bound(mainV.begin(), mainV.end(), med, comp);
+			if (it == mainV.end())
+				return false;
+			else
+				return  med.price == it->price;
+		}
+		bool binarySearchArrival(Date aArrival, vector<Med>::iterator &it) {
+			if (mainV.begin() == mainV.end())
+				return false;
+			ArrivalComparator comp = ArrivalComparator();
+			sort(mainV.begin(), mainV.end(), comp);
+			T med = Med(0, "", 0, false, 0.0, aArrival, 0);
+			it = lower_bound(mainV.begin(), mainV.end(), med, comp);
+			if (it == mainV.end())
+				return false;
+			else
+				return  med.arrival == it->arrival;
 		}
 };
 
