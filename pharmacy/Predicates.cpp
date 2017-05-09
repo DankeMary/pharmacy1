@@ -79,4 +79,18 @@ bool PricePredicate::operator()(Med med1, Med med2) {
 	return med1.price == med2.price;
 }
 
+//ArrivalPredicate
+ArrivalPredicate::ArrivalPredicate() {}
+ArrivalPredicate::ArrivalPredicate(Date aArrival)
+{
+	fArrival = aArrival;
+}
+
+bool ArrivalPredicate::operator()(Med med) {
+	return fArrival == med.arrival;
+}
+
+bool ArrivalPredicate::operator()(Med med1, Med med2) {
+	return med1.arrival == med2.arrival;
+}
 
