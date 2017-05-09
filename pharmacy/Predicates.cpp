@@ -94,3 +94,17 @@ bool ArrivalPredicate::operator()(Med med1, Med med2) {
 	return med1.arrival == med2.arrival;
 }
 
+//ShelfPredicate
+ShelfPredicate::ShelfPredicate() {}
+ShelfPredicate::ShelfPredicate(int aShelfLife)
+{
+	fShelfLife = aShelfLife;
+}
+
+bool ShelfPredicate::operator()(Med med) {
+	return fShelfLife == med.shelfLife;
+}
+
+bool ShelfPredicate::operator()(Med med1, Med med2) {
+	return med1.shelfLife == med2.shelfLife;
+}

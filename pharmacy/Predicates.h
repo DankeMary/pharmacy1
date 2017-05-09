@@ -64,3 +64,13 @@ public:
 	bool operator() (Med med);
 	bool operator() (Med med1, Med med2);
 };
+
+class ShelfPredicate {
+protected:
+	int fShelfLife;
+public:
+	ShelfPredicate();
+	ShelfPredicate(int aShelfLife);
+	bool operator() (Med med);
+	bool operator() (Med med1, Med med2);
+};

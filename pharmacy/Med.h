@@ -1,19 +1,19 @@
 #pragma once
 #include <string>
-#include <ctime>
+//#include <ctime>
 
 using namespace std;
 
 class Date {
-public:
-	int day;
-	int month;
-	int year;
-	Date();
-	void getDate();
-	friend bool operator<(const Date& other, const Date& other2);
-	bool operator==(const Date& other) const;
-	bool operator!=(const Date& other) const;
+	public:
+		int day;
+		int month;
+		int year;
+		Date();
+		void getDate();
+		friend bool operator<(const Date& other, const Date& other2);
+		bool operator==(const Date& other) const;
+		bool operator!=(const Date& other) const;
 };
 
 class Med
