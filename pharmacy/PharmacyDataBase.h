@@ -146,5 +146,17 @@ class PharmacyDataBase
 			else
 				return  med.arrival == it->arrival;
 		}
+		bool binarySearchShelfLife(int aShelf, vector<Med>::iterator &it) {
+			if (mainV.begin() == mainV.end())
+				return false;
+			ShelfComparator comp = ShelfComparator();
+			sort(mainV.begin(), mainV.end(), comp);
+			T med = Med(0, "", 0, false, 0.0, new Date(), aShelf);
+			it = lower_bound(mainV.begin(), mainV.end(), med, comp);
+			if (it == mainV.end())
+				return false;
+			else
+				return  med.shelfLife == it->shelfLife;
+		}
 };
 
