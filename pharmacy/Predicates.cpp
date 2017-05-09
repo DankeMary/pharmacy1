@@ -63,3 +63,20 @@ bool AvailablePredicate::operator()(Med med) {
 bool AvailablePredicate::operator()(Med med1, Med med2) {
 	return med1.available == med2.available;
 }
+
+//PricePredicate
+PricePredicate::PricePredicate() {}
+PricePredicate::PricePredicate(double aPrice)
+{
+	fPrice = aPrice;
+}
+
+bool PricePredicate::operator()(Med med) {
+	return fPrice == med.price;
+}
+
+bool PricePredicate::operator()(Med med1, Med med2) {
+	return med1.price == med2.price;
+}
+
+

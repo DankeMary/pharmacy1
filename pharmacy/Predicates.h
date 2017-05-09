@@ -45,4 +45,13 @@ public:
 	bool operator() (Med med1, Med med2);
 };
 
+class PricePredicate {
+protected:
+	double fPrice;
+public:
+	PricePredicate();
+	PricePredicate(double aPrice);
+	bool operator() (Med med);
+	bool operator() (Med med1, Med med2);
+};
 

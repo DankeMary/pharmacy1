@@ -150,6 +150,7 @@
     <ClInclude Include="Med.h" />
     <ClInclude Include="MenuUtils.h" />
     <ClInclude Include="PharmacyDataBase.h" />
+    <ClInclude Include="Predicates.h" />
     <ClInclude Include="Sets.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -161,6 +162,7 @@
     <ClCompile Include="MenuUtils.cpp" />
     <ClCompile Include="pharmacy.cpp" />
     <ClCompile Include="PharmacyDataBase.cpp" />
+    <ClCompile Include="Predicates.cpp" />
     <ClCompile Include="Sets.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
