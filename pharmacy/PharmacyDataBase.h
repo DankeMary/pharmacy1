@@ -194,5 +194,15 @@ class PharmacyDataBase
 			for_each(mainV.begin(), mainV.end(), set);
 			setV = set.getSet();
 		}
+
+		void saveToFile(string fileName) {
+			fstream fout(fileName, ios::out);
+			if (fout.is_open()) {
+				copy(vect.begin(), vect.end(), ostream_iterator<T>(fout, "\n"));
+				fout.close();
+			}
+			else
+				cout << "Ошибка при открытии файла" << std::endl;
+		}
 };
 
