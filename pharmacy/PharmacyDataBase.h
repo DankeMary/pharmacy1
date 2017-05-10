@@ -194,19 +194,36 @@ class PharmacyDataBase
 			for_each(mainV.begin(), mainV.end(), set);
 			setV = set.getSet();
 		}
+		void getFromConsole() {
+			mainV.clear();
+			T med;
+			int i = 1;
+			int choice = 1;
+			while (choice == 1) {
+				try {
+					//getMed
+					cout << "Ввести новые данные : 1 - Да, 0 - Нет : ";
+					cin >> choice;
+				}
+				catch (exception) {
+					return;
+				}
+				addItem(med);
+			}
+		}
 		void getFromFile(string fileName) {
 			fstream fin(fileName, ios::in);
 			if (fin.is_open()) {
 				istream_iterator<T> is(fin);
 				mainV.clear();
 				T med = *is;
-				add(med);
+				addItem(med);
 				while (!fin.eof()) {
 					try
 					{
 						is++;
 						med = *is;
-						add(med);
+						addItem(med);
 					}
 					catch (exception) {};
 				}
