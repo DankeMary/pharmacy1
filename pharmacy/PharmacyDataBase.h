@@ -19,9 +19,14 @@ class PharmacyDataBase
 		~PharmacyDataBase()
 		{
 		}
-		void addItem(T item)
+		bool addItem(T item)
 		{
-			mainV.push_back(item);
+			if (!findItem(car)) 
+			{
+				mainV.push_back(item);
+				return true;
+			}
+			return false;
 		}
 
 		bool findItem(T item) {
