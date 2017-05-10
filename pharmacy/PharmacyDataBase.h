@@ -204,6 +204,14 @@ class PharmacyDataBase
 			else
 				cout << "Ошибка при открытии файла" << std::endl;
 		}
-
+		void saveSetToFile(string fileName) {
+			fstream fout(fileName, ios::out);
+			if (fout.is_open()) {
+				copy(setV.begin(), setV.end(), ostream_iterator<T>(fout, "\n"));
+				fout.close();
+			}
+			else
+				cout << "Ошибка при открытии файла" << std::endl;
+		}
 };
 
