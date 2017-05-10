@@ -195,7 +195,10 @@ class PharmacyDataBase
 			setV = set.getSet();
 		}
 		void printToConsole() {
-			copy(vect.begin(), vect.end(), ostream_iterator<T>(cout, "\n"));
+			copy(mainV.begin(), mainV.end(), ostream_iterator<T>(cout, "\n"));
+		}
+		void printSetToConsole() {
+			copy(setV.begin(), setV.end(), ostream_iterator<T>(cout, "\n"));
 		}
 		void saveToFile(string fileName) {
 			fstream fout(fileName, ios::out);
