@@ -160,12 +160,22 @@ class PharmacyDataBase
 				return  med.shelfLife == it->shelfLife;
 		}
 		void getSetFarmNum(int aFarmNum) {
-			FarmNumSet set = OwnerFullNameAcc(aFarmNum);
+			FarmNumSet set = FarmNumSet(aFarmNum);
 			for_each(mainV.begin(), mainV.end(), set);
 			setV = set.getSet();
 		}
 		void getSetName(string aName) {
 			NameSet set = NameSet(aName);
+			for_each(mainV.begin(), mainV.end(), set);
+			setV = set.getSet();
+		}
+		void getSetQuantity(int aQuantity) {
+			QuantitySet set = QuantitySet(aQuantity);
+			for_each(mainV.begin(), mainV.end(), set);
+			setV = set.getSet();
+		}
+		void getSetAvailable(int aAvailable) {
+			AvailableSet set = AvailableSet(aAvailable);
 			for_each(mainV.begin(), mainV.end(), set);
 			setV = set.getSet();
 		}
