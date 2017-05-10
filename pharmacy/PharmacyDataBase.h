@@ -189,5 +189,10 @@ class PharmacyDataBase
 			for_each(mainV.begin(), mainV.end(), set);
 			setV = set.getSet();
 		}
+		void getSetShelf(int aShelf) {
+			ShelfSet set = ShelfSet(aShelf);
+			for_each(mainV.begin(), mainV.end(), set);
+			setV = set.getSet();
+		}
 };
 
