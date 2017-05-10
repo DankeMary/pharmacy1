@@ -179,5 +179,10 @@ class PharmacyDataBase
 			for_each(mainV.begin(), mainV.end(), set);
 			setV = set.getSet();
 		}
+		void getSetPrice(double aPrice) {
+			PriceSet set = PriceSet(aPrice);
+			for_each(mainV.begin(), mainV.end(), set);
+			setV = set.getSet();
+		}
 };
 
