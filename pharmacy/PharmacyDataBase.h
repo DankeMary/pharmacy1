@@ -201,7 +201,7 @@ class PharmacyDataBase
 			int choice = 1;
 			while (choice == 1) {
 				try {
-					//getMed
+					med = getMed(i);
 					cout << "Ввести новые данные : 1 - Да, 0 - Нет : ";
 					cin >> choice;
 				}
@@ -209,6 +209,7 @@ class PharmacyDataBase
 					return;
 				}
 				addItem(med);
+				i++;
 			}
 		}
 		void getFromFile(string fileName) {
