@@ -174,13 +174,18 @@ class PharmacyDataBase
 			for_each(mainV.begin(), mainV.end(), set);
 			setV = set.getSet();
 		}
-		void getSetAvailable(int aAvailable) {
+		void getSetAvailable(bool aAvailable) {
 			AvailableSet set = AvailableSet(aAvailable);
 			for_each(mainV.begin(), mainV.end(), set);
 			setV = set.getSet();
 		}
 		void getSetPrice(double aPrice) {
 			PriceSet set = PriceSet(aPrice);
+			for_each(mainV.begin(), mainV.end(), set);
+			setV = set.getSet();
+		}
+		void getSetDate(Date aDate) {
+			DateSet set = DateSet(aDate);
 			for_each(mainV.begin(), mainV.end(), set);
 			setV = set.getSet();
 		}
