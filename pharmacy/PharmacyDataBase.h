@@ -194,7 +194,9 @@ class PharmacyDataBase
 			for_each(mainV.begin(), mainV.end(), set);
 			setV = set.getSet();
 		}
-
+		void printToConsole() {
+			copy(vect.begin(), vect.end(), ostream_iterator<T>(cout, "\n"));
+		}
 		void saveToFile(string fileName) {
 			fstream fout(fileName, ios::out);
 			if (fout.is_open()) {
