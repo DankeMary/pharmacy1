@@ -133,6 +133,36 @@ string getString()
 	getline(cin, str);
 	return str;
 }
+
+Med getMed(int number) 
+{
+	string name, str;
+	int farmNum, quantity, shelfLife;
+	double price;
+	bool available;
+	Date arrival;
+
+	cout << "Лекарство" << " №" << to_string(number) << endl;
+
+	cout << "Номер аптеки: "<< endl;
+	farmNum = getInt();
+	cout << "Название: " << endl;
+	name = getString();
+	cout << "Количество: " << endl;
+	quantity = getInt();
+	cout << "Наличие (+/-): " << endl;
+	getline(cin, str);
+	available = boolFromString(str);
+	cout << "Цена: " << endl;
+	price = getDouble();
+	cout << "Дата прибытия: " << endl;
+	getline(cin, str);
+	arrival = dateFromString(str);
+	cout << "Срок хранения: " << endl;
+	shelfLife = getInt();
+
+	return Med(farmNum, name, quantity, available, price, arrival, shelfLife);
+}
  
 
 
