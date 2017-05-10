@@ -194,6 +194,27 @@ class PharmacyDataBase
 			for_each(mainV.begin(), mainV.end(), set);
 			setV = set.getSet();
 		}
+		void getFromFile(string fileName) {
+			fstream fin(fileName, ios::in);
+			if (fin.is_open()) {
+				istream_iterator<T> is(fin);
+				mainV.clear();
+				T med = *is;
+				add(med);
+				while (!fin.eof()) {
+					try
+					{
+						is++;
+						med = *is;
+						add(med);
+					}
+					catch (exception) {};
+				}
+				fin.close();
+			}
+			else
+				cout << "Файл не найден" << endl;
+		}
 		void printToConsole() {
 			copy(mainV.begin(), mainV.end(), ostream_iterator<T>(cout, "\n"));
 		}
