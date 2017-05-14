@@ -142,17 +142,41 @@ int main()
 			switch (option)
 			{
 				case 1://По номеру аптеки
-
+					cout << "Введите номер аптеки" << endl;
+					dataBase.getSetFarmNum(getInt(0));
 					break;
 				case 2://По названию лекарства
-
+					cout << "Введите название лекарства" << endl;
+					dataBase.getSetName(getString());
 					break;
 				case 3://По дате поступления
-
+					cout << "Введите дату поступления" << endl;
+					getline(cin, str);
+					date = dateFromString(str);
+					dataBase.getSetDate(date);
 					break;
 				case 0:
 					break;
 			}
+			if (option != 0)
+			{
+				printTargetMenu();
+				option = getInt(option, 0, 2);
+				switch (option)
+				{
+				case 1:
+					dataBase.printSetToConsole();
+					break;
+				case 2:
+					inputFile = false;
+					fileName = getFileName(inputFile);
+					dataBase.saveSetToFile(fileName);
+					break;
+				case 0:
+					break;
+				}
+			}
+			
 			break;
 		case 0: //Выход
 			break;
