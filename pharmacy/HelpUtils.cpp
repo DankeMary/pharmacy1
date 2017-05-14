@@ -101,7 +101,7 @@ int getInt(int basic, int min, int max)
 	
 }
 
-double getDouble(double min, double max)
+double getDouble(double basic, double min, double max)
 {
 	double num;
 	string str;
@@ -110,15 +110,16 @@ double getDouble(double min, double max)
 		try {
 			getline(cin, str);
 			if (str == "")
-				return min - 1;
+				return basic;
 			else
 			{
 				num = stod(str);
 				if (num < min || num > max)
 				{
-					cout << "Значение вне допустимого диапазона ( " << min << " ... " << max << " ) Повторите ввод " << endl;
+					cout << "Значение вне допустимого диапазона. Повторите ввод " << endl;
 				}
-				else return num;
+				else 
+					return num;
 			}
 		}
 		catch (exception) {
