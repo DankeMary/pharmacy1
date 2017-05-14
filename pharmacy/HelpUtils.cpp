@@ -73,24 +73,25 @@ string getFileName(bool input)
 	return name;
 }
 
-
-int getInt(int min, int max) 
+int getInt(int basic, int min, int max)
 {
 	int num;
 	string str;
 	while (true)
 	{
-		try {
+		try 
+		{
 			getline(cin, str);
 			if (str == "")
-				return min - 1;
+				return basic;
 			else
 			{
 				num = stoi(str);
 				if (num < min || num > max) 
 				{
 					cout << "Значение вне допустимого диапазона ( " << min << " ... " << max << " ) Повторите ввод " << endl;					
-				} else return num;
+				} else 
+					return num;
 			}
 		}
 		catch (exception) {
