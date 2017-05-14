@@ -33,7 +33,19 @@ int main()
 			}
 			break;
 		case 2://Вывести список
+			printTargetMenu();
+			option = getInt(option, 0, 2);
+			switch (option) 
+			{
+				case 1:
 
+					break;
+				case 2:
+
+					break;
+				case 0:
+					break;
+			}
 			break;
 		case 3://Поиск
 
