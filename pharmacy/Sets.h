@@ -13,8 +13,7 @@ class FarmNumSet
 			farmNum = aFarmNum;
 			set = new vector<Med>();
 		}
-		void addItem(Med med)
-		{
+		void operator()(Med med) {
 			if (farmNum == med.farmNum)
 				set->push_back(med);
 		}
@@ -36,8 +35,7 @@ public:
 		name = aName;
 		set = new vector<Med>();
 	}
-	void addItem(Med med)
-	{
+	void operator()(Med med) {
 		if (name == med.name)
 			set->push_back(med);
 	}
@@ -60,8 +58,7 @@ public:
 		set = new vector<Med>();
 	}
 
-	void addItem(Med med)
-	{
+	void operator()(Med med) {
 		if (quantity == med.quantity)
 			set->push_back(med);
 	}
@@ -83,8 +80,7 @@ public:
 		available = aAvailable;
 		set = new vector<Med>();
 	}
-	void addItem(Med med)
-	{
+	void operator()(Med med) {
 		if (available == med.available)
 			set->push_back(med);
 	}
@@ -107,8 +103,7 @@ public:
 		set = new vector<Med>();
 	}
 
-	void addItem(Med med)
-	{
+	void operator()(Med med) {
 		if (price == med.price)
 			set->push_back(med);
 	}
@@ -131,8 +126,7 @@ public:
 		set = new vector<Med>();
 	}
 
-	void addItem(Med med)
-	{
+	void operator()(Med med) {
 		if (arrival == med.arrival)
 			set->push_back(med);
 	}
@@ -154,8 +148,7 @@ public:
 		shelf = aShelf;
 		set = new vector<Med>();
 	}
-	void addItem(Med med)
-	{
+	void operator()(Med med) {
 		if (shelf == med.shelfLife)
 			set->push_back(med);
 	}
