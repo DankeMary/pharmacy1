@@ -144,7 +144,12 @@ Med getMed(int number)
 	bool available;
 	Date arrival;
 
-	cout << "Лекарство" << " №" << number << endl;
+	cout << "Лекарство";
+	if (number != -1)
+	{
+		cout << " №" << number;
+	}
+	cout << endl;
 
 	cout << "Номер аптеки: "<< endl;
 	farmNum = getInt(0);
@@ -180,7 +185,12 @@ Med getMed(Med basicMed, int number)
 	bool available;
 	Date arrival;
 
-	cout << "Лекарство" << " №" << number << endl;
+	cout << "Лекарство";
+	if (number != -1)
+	{
+		cout << " №" << number;
+	}
+	cout << endl;
 
 	cout << "Номер аптеки: " << endl;
 	farmNum = getInt(basicMed.farmNum);
