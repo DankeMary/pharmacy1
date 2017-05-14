@@ -2,7 +2,6 @@
 #include "Med.h"
 #include <string>
 
-//using namespace std;
 
 class FarmNumPredicate{
 	protected:
@@ -16,7 +15,7 @@ class FarmNumPredicate{
 };
 
 class NamePredicate {
-	protected: //????
+	protected:
 		string fName;
 	public:
 		NamePredicate();

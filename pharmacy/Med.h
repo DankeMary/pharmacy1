@@ -35,6 +35,6 @@ class Med
 };
 
 ostream &operator<<(ostream &os, const Med &med);
-istream& operator>>(std::istream &is, Med &med);
+istream& operator>>(istream &is, Med &med);
 
 

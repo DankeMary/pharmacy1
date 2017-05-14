@@ -71,13 +71,13 @@ bool operator<(const Date& other, const Date& other2)
 						return false;
 }
 
-std::ostream& operator<<(std::ostream &os, const Date &date)
+ostream& operator<<(ostream &os, const Date &date)
 {
 	os << date.day << "." << date.month << "." << date.year;
 	return os;
 }
 
-std::istream& operator>>(std::istream &is, Date &date) {
+istream& operator>>(istream &is, Date &date) {
 	char symb;
 	cin >> date.day >> symb >> date.month >> symb >> date.year;
 	return is;

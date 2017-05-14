@@ -2,7 +2,6 @@
 #include "Predicates.h"
 //#include <string>
 
-//using namespace std;
 
 //FarmNumPredicate
 FarmNumPredicate::FarmNumPredicate() {}
@@ -21,7 +20,7 @@ bool FarmNumPredicate::operator() (Med med1, Med med2) {
 
 //NamePredicate
 NamePredicate::NamePredicate() {}
-NamePredicate::NamePredicate(std::string aName)
+NamePredicate::NamePredicate(string aName)
 {
 	fName = aName;
 }

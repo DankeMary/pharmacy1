@@ -12,7 +12,8 @@
 
 int main()
 {
-	int option = 0;
+	setlocale(LC_ALL, "Russian");
+	int option = -1;
 	PharmacyDataBase<> dataBase = PharmacyDataBase<>();
 	Med med;
 	string fileName, str;

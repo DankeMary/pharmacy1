@@ -178,7 +178,7 @@ class PharmacyDataBase
 				fout.close();
 			}
 			else
-				cout << "Ошибка при открытии файла" << std::endl;
+				cout << "Ошибка при открытии файла" << endl;
 		}
 		void saveSetToFile(string fileName) {
 			fstream fout(fileName, ios::out);
@@ -187,7 +187,7 @@ class PharmacyDataBase
 				fout.close();
 			}
 			else
-				cout << "Ошибка при открытии файла" << std::endl;
+				cout << "Ошибка при открытии файла" << endl;
 		}
 };
 
