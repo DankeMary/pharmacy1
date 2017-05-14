@@ -23,11 +23,10 @@ int main()
 			option = getInt(option, 0, 2);
 			switch (option) {
 			case 1:
-				cont.consoleInput();
+
 				break;
 			case 2:
-				FName = input_file_name();
-				cont.fileInput(FName);
+
 				break;
 			case 0:
 				break;
