@@ -58,7 +58,7 @@ string getFileName(bool input)
 	while (name == "")
 	{
 		cout << "Имя файла не должно быть пустым! Повторите ввод";
-		getline(std::cin, name);
+		getline(cin, name);
 	}
 	if (input) 
 	{		
@@ -144,24 +144,30 @@ Med getMed(int number)
 	bool available;
 	Date arrival;
 
-	cout << "Лекарство" << " №" << to_string(number) << endl;
+	cout << "Лекарство" << " №" << number << endl;
 
 	cout << "Номер аптеки: "<< endl;
-	farmNum = getInt();
+	farmNum = getInt(0);
+
 	cout << "Название: " << endl;
 	name = getString();
+
 	cout << "Количество: " << endl;
-	quantity = getInt();
+	quantity = getInt(0);
+
 	cout << "Наличие (+/-): " << endl;
 	getline(cin, str);
 	available = boolFromString(str);
+
 	cout << "Цена: " << endl;
-	price = getDouble();
+	price = getDouble(0.0);
+
 	cout << "Дата прибытия: " << endl;
 	getline(cin, str);
 	arrival = dateFromString(str);
+
 	cout << "Срок хранения: " << endl;
-	shelfLife = getInt();
+	shelfLife = getInt(0);
 
 	return Med(farmNum, name, quantity, available, price, arrival, shelfLife);
 }
