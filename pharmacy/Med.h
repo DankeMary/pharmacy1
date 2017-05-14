@@ -34,5 +34,7 @@ class Med
 		bool operator!=(const Med& other) const;
 };
 
+ostream &operator<<(ostream &os, const Med &med);
+istream& operator>>(std::istream &is, Med &med);
 
 

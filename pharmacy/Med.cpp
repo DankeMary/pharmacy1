@@ -149,19 +149,18 @@ void Med::getData()
 	shelfLife = stoi(str);
 }
 
-std::ostream& operator<<(std::ostream &os, const Med &med) {
+ostream &operator<<(ostream &os, const Med &med) {
 	os << "Номер аптеки: "<< med.farmNum << "\n" <<
 		"Название лекарства: " << med.name << "\n" <<
 		"Количество: " << med.quantity << "\n" <<
 		"Наличие: " << boolToString(med.available) << "\n" <<
 		"Цена: " << med.price << "\n" <<
-		"Дата поступления: " << med.arrival << "\n" << // Ты же не определила потоковой операции
+		"Дата поступления: " << med.arrival << "\n" << 
 		"Срок хранения: " << med.shelfLife << "(мес.)" << "\n";
 	return os;
 }
 
-
-std::istream& operator>>(std::istream &is, Med &med) {
+istream& operator>>(istream &is, Med &med) {
 	try
 	{
 		med.farmNum = stoi(skipFieldsNames(is));
@@ -172,7 +171,7 @@ std::istream& operator>>(std::istream &is, Med &med) {
 		med.arrival = dateFromString(skipFieldsNames(is));
 		med.shelfLife = stoi(skipFieldsNames(is));
 	}
-	catch (const std::exception& e)
+	catch (const exception& e)
 	{
 	};
 	return is;
