@@ -67,7 +67,22 @@ int main()
 
 			break;
 		case 5://Выборка
+			findMenu();
+			option = getInt(option, 0, 3);
+			switch (option)
+			{
+				case 1://По номеру аптеки
 
+					break;
+				case 2://По названию лекарства
+
+					break;
+				case 3://По дате поступления
+
+					break;
+				case 0:
+					break;
+			}
 			break;
 		case 0: //Выход
 			break;
