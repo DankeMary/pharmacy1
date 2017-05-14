@@ -21,15 +21,16 @@ int main()
 		case 1://Загрузить список
 			printTargetMenu();
 			option = getInt(option, 0, 2);
-			switch (option) {
-			case 1:
+			switch (option) 
+			{
+				case 1:
 
-				break;
-			case 2:
+					break;
+				case 2:
 
-				break;
-			case 0:
-				break;
+					break;
+				case 0:
+					break;
 			}
 			break;
 		case 2://Вывести список
@@ -48,7 +49,19 @@ int main()
 			}
 			break;
 		case 3://Поиск
-
+			searchTypeMenu();
+			option = getInt(option, 0, 2);
+			switch (option) 
+			{
+				case 1://Простой
+				
+					break;
+				case 2://Бинарный
+				
+					break;
+				case 0:
+					break;
+			}
 			break;
 		case 4: //Добавить
 
