@@ -171,6 +171,50 @@ Med getMed(int number)
 
 	return Med(farmNum, name, quantity, available, price, arrival, shelfLife);
 }
+
+Med getMed(Med basicMed, int number)
+{
+	string name, str;
+	int farmNum, quantity, shelfLife;
+	double price;
+	bool available;
+	Date arrival;
+
+	cout << "Лекарство" << " №" << number << endl;
+
+	cout << "Номер аптеки: " << endl;
+	farmNum = getInt(basicMed.farmNum);
+
+	cout << "Название: " << endl;
+	name = getString();
+	if (name == "")
+		name = basicMed.name;
+
+	cout << "Количество: " << endl;
+	quantity = getInt(basicMed.quantity);
+
+	cout << "Наличие (+/-): " << endl;
+	getline(cin, str);
+	if (str == "")
+		available = basicMed.available;
+	else
+		available = boolFromString(str);
+
+	cout << "Цена: " << endl;
+	price = getDouble(basicMed.price);
+
+	cout << "Дата прибытия: " << endl;
+	getline(cin, str);
+	if (str == "")
+		arrival = basicMed.arrival;
+	else
+		arrival = dateFromString(str);
+
+	cout << "Срок хранения: " << endl;
+	shelfLife = getInt(basicMed.shelfLife);
+
+	return Med(farmNum, name, quantity, available, price, arrival, shelfLife);
+}
  
 
 

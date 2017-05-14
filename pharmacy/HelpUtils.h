@@ -12,3 +12,5 @@ string getFileName(bool input);
 string getString();
 int getInt(int basic, int min = INT_MIN, int max = INT_MAX);
 double getDouble(double basic, double min = DBL_MIN, double max = DBL_MAX);
+Med getMed(int number);
+Med getMed(Med basicMed, int number);
