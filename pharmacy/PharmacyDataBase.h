@@ -101,8 +101,7 @@ class PharmacyDataBase
 				return false;
 			FarmNumComparator comp = FarmNumComparator();
 			sort(mainV.begin(), mainV.end(), comp);
-			T med = Med();
-		//	T med = Med(aFarmNum, "", 0, false, 0.0, new Date(), 0);
+			T med = Med(aFarmNum, "", 0, false, 0.0, new Date(), 0);
 			it = lower_bound(mainV.begin(), mainV.end(), med, comp);
 			if (it == mainV.end())
 				return false;
@@ -114,8 +113,7 @@ class PharmacyDataBase
 				return false;
 			NameComparator comp = NameComparator();
 			sort(mainV.begin(), mainV.end(), comp);
-			T med = Med();
-//			T med = Med(0, aName, 0, false, 0.0, new Date(), 0);
+			T med = Med(0, aName, 0, false, 0.0, new Date(), 0);
 			it = lower_bound(mainV.begin(), mainV.end(), med, comp);
 			if (it == mainV.end())
 				return false;
