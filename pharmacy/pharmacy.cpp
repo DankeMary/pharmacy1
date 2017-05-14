@@ -11,7 +11,8 @@
 int main()
 {
 	int option = 0;
-
+	PharmacyDataBase<> dataBase = PharmacyDataBase<>();
+	Med med;
 	while (option != 0)
 	{
 		mainMenu();
@@ -64,7 +65,8 @@ int main()
 			}
 			break;
 		case 4: //Добавить
-
+			med = getMed();
+			dataBase.addItem(med);
 			break;
 		case 5://Выборка
 			findMenu();
