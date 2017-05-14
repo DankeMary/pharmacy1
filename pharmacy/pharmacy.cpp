@@ -44,10 +44,12 @@ int main()
 			switch (option) 
 			{
 				case 1:
-
+					dataBase.printToConsole();
 					break;
 				case 2:
-
+					inputFile = false;
+					fileName = getFileName(inputFile);
+					dataBase.saveToFile(fileName);
 					break;
 				case 0:
 					break;
