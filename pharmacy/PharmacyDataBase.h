@@ -37,7 +37,11 @@ class PharmacyDataBase
 		bool findItem(T item, random_access_iterator_tag &it) {
 			it = find(mainV.begin(), mainV.end(), item);
 			return it != mainV.end();
-		}		
+		}	
+
+		void changeItem(vector<Med>::iterator &it) {
+			*it = getMed(*it);
+		}
 
 		void removeItem(vector<Med>::iterator it) {
 			mainV.erase(it);
