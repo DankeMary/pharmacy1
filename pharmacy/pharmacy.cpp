@@ -13,6 +13,8 @@ int main()
 	int option = 0;
 	PharmacyDataBase<> dataBase = PharmacyDataBase<>();
 	Med med;
+	string fileName;
+	bool inputFile;
 	while (option != 0)
 	{
 		mainMenu();
@@ -25,10 +27,12 @@ int main()
 			switch (option) 
 			{
 				case 1:
-
+					dataBase.getFromConsole();
 					break;
 				case 2:
-
+					inputFile = true;
+					fileName = getFileName(inputFile);
+					dataBase.getFromFile(fileName);
 					break;
 				case 0:
 					break;
