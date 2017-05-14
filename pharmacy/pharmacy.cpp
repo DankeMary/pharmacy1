@@ -2,10 +2,42 @@
 //
 
 #include "stdafx.h"
-
+#include "stdafx.h"
+#include "PharmacyDataBase.h"
+#include "HelpUtils.h"
+#include "MenuUtils.h"
+#include <iostream>
 
 int main()
 {
+	int option = 0;
+
+	while (option != 0)
+	{
+		mainMenu();
+		option = getInt(option, 0, 5);
+		switch (option)
+		{
+		case 1://Загрузить список
+			
+			break;
+		case 2://Вывести список
+
+			break;
+		case 3://Поиск
+
+			break;
+		case 4: //Добавить
+
+			break;
+		case 5://Выборка
+
+			break;
+		case 0: //Выход
+			break;
+		}
+	}
+
     return 0;
 }
 
