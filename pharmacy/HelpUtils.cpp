@@ -170,10 +170,11 @@ Med getMed(int number)
 
 	cout << "Количество: " << endl;
 	quantity = getInt(0);
-
+	/*
 	cout << "Наличие (+/-): " << endl;
 	getline(cin, str);
-	available = boolFromString(str);
+	available = boolFromString(str);*/
+	available = quantity > 0;
 
 	cout << "Цена: " << endl;
 	price = getDouble(0.0);
@@ -213,12 +214,13 @@ Med getMed(Med basicMed, int number)
 	cout << "Количество: " << endl;
 	quantity = getInt(basicMed.quantity);
 
-	cout << "Наличие (+/-): " << endl;
+	/*cout << "Наличие (+/-): " << endl;
 	getline(cin, str);
 	if (str == "")
 		available = basicMed.available;
 	else
-		available = boolFromString(str);
+		available = boolFromString(str);*/
+	available = quantity > 0;
 
 	cout << "Цена: " << endl;
 	price = getDouble(basicMed.price);
