@@ -24,7 +24,7 @@ Date dateFromString(string str)
 {
 	Date date = Date();
 	int i = 0;
-	while (str[i] == ' ' || i < str.length())
+	while ((str[i] == ' ') && (i < str.length()))
 	{
 		i++;
 	}
@@ -173,7 +173,6 @@ Med getMed(int number)
 
 	cout << "Срок хранения: " << endl;
 	shelfLife = getInt(0);
-
 	return Med(farmNum, name, quantity, available, price, arrival, shelfLife);
 }
 
