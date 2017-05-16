@@ -15,13 +15,12 @@ Date::Date()
 }
 
 void Date::getDate() {
-	/*d.day = 0;
-	d.month = 0;
-	d.year = 0;*/
+	string str;
 	cout << "Введите день: ";
 	while (day < 1 || day > 30)
 	{
-		cin >> day;
+		getline(cin, str);
+		day = stoi(str);
 		if (day < 1 || day > 30)
 			cout << "Ошибка! Повторите ввод" << endl;
 	}
@@ -29,7 +28,8 @@ void Date::getDate() {
 	cout << "Введите месяц: ";
 	while (month < 1 || month > 12)
 	{
-		cin >> month;
+		getline(cin, str);
+		month = stoi(str);
 		if (month < 1 || month > 12)
 			cout << "Ошибка! Повторите ввод" << endl;
 	}
@@ -37,7 +37,8 @@ void Date::getDate() {
 	cout << "Введите год: ";
 	while (year < 1970 || year > 2020)
 	{
-		cin >> year;
+		getline(cin, str);
+		year = stoi(str);
 		if (year < 1900 || year > 2020)
 			cout << "Ошибка! Повторите ввод" << endl;
 	}
@@ -73,7 +74,19 @@ bool operator<(const Date& other, const Date& other2)
 
 ostream& operator<<(ostream &os, const Date &date)
 {
-	os << date.day << "." << date.month << "." << date.year;
+	if (date.day < 10)
+	{
+		os << "0" << date.day << ".";
+	}
+	else 
+		os << date.day << ".";
+	if (date.month < 10)
+	{
+		os << "0" << date.month << ".";
+	}
+	else
+		os << date.month << ".";
+	os << date.year;
 	return os;
 }
 

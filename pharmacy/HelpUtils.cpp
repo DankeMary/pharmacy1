@@ -183,8 +183,9 @@ Med getMed(int number)
 	price = getDouble(0.0);
 
 	cout << "Дата прибытия: " << endl;
-	getline(cin, str);
-	arrival = dateFromString(str);
+	/*getline(cin, str);
+	arrival = dateFromString(str);*/
+	arrival.getDate();
 
 	cout << "Срок хранения: " << endl;
 	shelfLife = getInt(0);
