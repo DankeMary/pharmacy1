@@ -156,7 +156,7 @@ ostream &operator<<(ostream &os, const Med &med) {
 		"Наличие: " << boolToString(med.available) << "\n" <<
 		"Цена: " << med.price << "\n" <<
 		"Дата поступления: " << med.arrival << "\n" << 
-		"Срок хранения: " << med.shelfLife << "(мес.)" << "\n";
+		"Срок хранения: " << med.shelfLife << "\n";
 	return os;
 }
 

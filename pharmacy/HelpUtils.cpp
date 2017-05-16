@@ -47,20 +47,16 @@ string skipFieldsNames(istream &is)
 		return "";
 	else
 	{
-		//substr = str[index];
 		while ((index <= str.length()) && (substr == " "))
 		{
 			index++;
 			substr = str[index];
 		}
-		return str.substr(index);
-
+		if (index > str.length())
+			return "";
+		else
+			return str.substr(index);
 	}
-	/*while ((str.find(":") != -1) || str == "\t" || str == "\n" || str == " ")
-	{
-		is >> str;
-	}*/
-	return str;
 }
 
 

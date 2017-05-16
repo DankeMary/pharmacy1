@@ -158,7 +158,9 @@ class PharmacyDataBase
 						med = *is;
 						addItem(med);
 					}
-					catch (exception) {};
+					catch (exception) 
+					{
+					};
 				}
 				fin.close();
 			}
