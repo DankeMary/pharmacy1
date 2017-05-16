@@ -55,6 +55,9 @@ string skipFieldsNames(istream &is)
 		if (index > str.length())
 			return "";
 		else
+		{
+			substr = str.substr(index);
+		}
 			return str.substr(index);
 	}
 }

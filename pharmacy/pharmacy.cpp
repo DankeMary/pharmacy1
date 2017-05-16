@@ -42,6 +42,7 @@ int main()
 					dataBase.getFromFile(fileName);
 					break;
 				case 0:
+					option = 1;
 					break;
 			}
 			break;
@@ -59,6 +60,7 @@ int main()
 					dataBase.saveToFile(fileName);
 					break;
 				case 0:
+					option = 2;
 					break;
 			}
 			break;
@@ -75,14 +77,17 @@ int main()
 					simpleSearch = false;
 					break;
 				case 0:
+					option = 3;
 					break;
 			}
-			findMenu();
-			option = getInt(option, 0, 3);
-			switch (option)
+			if (option != 3)
 			{
+				findMenu();
+				option = getInt(option, 0, 3);
+				switch (option)
+				{
 				case 1://По номеру аптеки
-					cout << "Введите номер аптеки"<< endl;
+					cout << "Введите номер аптеки" << endl;
 					if (simpleSearch)
 						found = dataBase.searchFarmNum(getInt(0), it);
 					else
@@ -105,33 +110,41 @@ int main()
 						found = dataBase.binarySearchArrival(date, it);
 					break;
 				case 0:
+					option = 4;
 					break;
-			}
-			if (found) {
-				cout << "Запись найдена\n";
-				actionsMenu();
-				option = getInt(option, 0, 3);
-				while (option != 0) 
-				{
-					switch (option) {
-					case 1:
-						cout << *it;
-						break;
-					case 2:
-						dataBase.changeItem(it);
-						break;
-					case 3:
-						dataBase.removeItem(it);
-						break;
-					case 0:
-						break;
-					}
+				}
+				if ((option != 4) && found) {
+					cout << "Запись найдена\n";
 					actionsMenu();
 					option = getInt(option, 0, 3);
+					while (option != 0)
+					{
+						switch (option) {
+						case 1:
+							cout << *it;
+							break;
+						case 2:
+							dataBase.changeItem(it);
+							break;
+						case 3:
+							dataBase.removeItem(it);
+							option = 0;
+							break;
+						case 0:
+							option = 0;
+							break;
+						}
+						if (option != 0)
+						{
+							actionsMenu();
+							option = getInt(option, 0, 3);
+						}
+					}
 				}
+				else if (!found &&  option != 0)
+					cout << "Запись не найдена!\n";
+				option = 3;
 			}
-			else if (!found &&  option != 0)
-				cout << "Запись не найдена!\n";
 			break;
 		case 4: //Добавить
 			med = getMed();
@@ -157,6 +170,7 @@ int main()
 					dataBase.getSetDate(date);
 					break;
 				case 0:
+					option = 5;
 					break;
 			}
 			if (option != 0)
