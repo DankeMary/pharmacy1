@@ -40,11 +40,26 @@ Date dateFromString(string str)
 string skipFieldsNames(istream &is)
 {
 	string str;
-	is >> str;
-	while ((str.find(":") != -1) || str == "\t" || str == "\n" || str == " ")
+	string substr = " ";
+	getline(is, str);
+	int index = str.find(":") ;
+	if (index == -1)
+		return "";
+	else
+	{
+		//substr = str[index];
+		while ((index <= str.length()) && (substr == " "))
+		{
+			index++;
+			substr = str[index];
+		}
+		return str.substr(index);
+
+	}
+	/*while ((str.find(":") != -1) || str == "\t" || str == "\n" || str == " ")
 	{
 		is >> str;
-	}
+	}*/
 	return str;
 }
 
