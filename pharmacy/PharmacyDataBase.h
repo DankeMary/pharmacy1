@@ -135,7 +135,7 @@ class PharmacyDataBase
 				try {
 					med = getMed(i);
 					cout << "Ввести новые данные : 1 - Да, 0 - Нет : ";
-					cin >> choice;
+					choice = getInt(choice, 0, 1);
 				}
 				catch (exception) {
 					return;
