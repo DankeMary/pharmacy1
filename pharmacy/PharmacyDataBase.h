@@ -40,7 +40,10 @@ class PharmacyDataBase
 			}
 			return false;
 		}
-
+		bool emptyDataBase()
+		{
+			return mainV.empty();
+		}
 		bool findItem(T item) {
 			vector<T>::iterator it = find(mainV.begin(), mainV.end(), item);
 			return it != mainV.end();
