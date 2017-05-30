@@ -47,6 +47,10 @@ public:
 		return vect.cend();
 	}
 
+	int size() {
+		return vect.size();
+	}
+
 	bool isEmpty() {
 		return vect.size() == 0;
 	}
@@ -63,6 +67,7 @@ public:
 	void remove(my_iterator &it) {
 		vect.erase(it);
 	}
+
 
 	bool find(T item) {
 		return std::find(vect.begin(), vect.end(), item) != vect.end();
@@ -129,8 +134,6 @@ public:
 		Med med = Med(0, "", 0, false, 0.0, aArrival, 0);
 		return find(ArrivalComparator(), med, it);
 	}
-	
-
 
 	PharmacyDataBase getSetFarmNum(int aFarmNum) {
 		return PharmacyDataBase(findSubset(FarmNumSet(aFarmNum)));

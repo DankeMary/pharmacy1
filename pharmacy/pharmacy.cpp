@@ -197,6 +197,7 @@ int main()
 						switch (option)
 						{
 						case 1:
+							cout << "\nКол-во найденных записей: " << subSet.size() << endl;
 							consoleOutput(subSet);
 							break;
 						case 2:
