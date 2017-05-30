@@ -114,7 +114,6 @@ Med::Med(int farmNumTag, string nameTag, int quantTag, bool availTag, double pri
 	quantity = quantTag;
 	available = availTag;
 	price = priceTag;
-	//arrival = Date(); //???
 	arrival = arriveTag;
 	shelfLife = lifeTag;
 }

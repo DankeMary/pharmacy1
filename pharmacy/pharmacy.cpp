@@ -1,5 +1,13 @@
 // pharmacy.cpp: определяет точку входа для консольного приложения.
 //
+/*11. Запись о лекарственном препарате содержит поля: номер аптеки, название лекарства, 
+количество упаковок, наличие, стоимость одной упаковки, дата поступления в аптеку, 
+срок хранения. Поиск по номеру аптеки, наименованию препарата, дате поступления. 
+Результатом должна быть консольная программа с текстовым меню. Программа должна содержать
+шаблонный класс для управления данными согласно заданию. Для хранения данных необходимо 
+выбрать оптимальный с точки зрения задания контейнер. 
+
+Лактионова Мария, 2 курс, 9 группа*/
 
 #include "stdafx.h"
 #include "PharmacyDataBase.h"
@@ -14,7 +22,8 @@ int main()
 {
 	setlocale(LC_ALL, "Russian");
 	int option = -1;
-	PharmacyDataBase<> dataBase = PharmacyDataBase<>();
+	PharmacyDataBase dataBase = PharmacyDataBase();
+	PharmacyDataBase subSet = PharmacyDataBase();
 	Med med;
 	string fileName, str;
 	Date date;
@@ -26,7 +35,7 @@ int main()
 		mainMenu();
 		option = getInt(option, 0, 5);
 		found = false;
-		if (dataBase.emptyDataBase() && (option != 1) && (option != 0))
+		if (dataBase.isEmpty() && (option != 1) && (option != 0)) 
 			cout << "База данных пуста!" << endl;
 		else
 		{
@@ -38,12 +47,12 @@ int main()
 				switch (option)
 				{
 				case 1:
-					dataBase.getFromConsole();
+					consoleInput(dataBase);
 					break;
 				case 2:
 					inputFile = true;
 					fileName = getFileName(inputFile);
-					dataBase.getFromFile(fileName);
+					dataBase.getFromFile(fstream(fileName, ios::in));
 					break;
 				case 0:
 					option = 1;
@@ -56,12 +65,13 @@ int main()
 				switch (option)
 				{
 				case 1:
-					dataBase.printToConsole();
+					cout << "\n";
+					consoleOutput(dataBase);
 					break;
 				case 2:
 					inputFile = false;
 					fileName = getFileName(inputFile);
-					dataBase.saveToFile(fileName);
+					dataBase.fileOutput(fstream(fileName, ios::out));
 					break;
 				case 0:
 					option = 2;
@@ -128,10 +138,11 @@ int main()
 								cout << *it;
 								break;
 							case 2:
-								dataBase.changeItem(it);
+								changeMed(it);
 								break;
 							case 3:
-								dataBase.removeItem(it);
+								dataBase.remove(it);
+								cout << "Запись была удалена" << endl;
 								option = 0;
 								break;
 							case 0:
@@ -161,38 +172,44 @@ int main()
 				{
 				case 1://По номеру аптеки
 					cout << "Введите номер аптеки" << endl;
-					dataBase.getSetFarmNum(getInt(0));
+					subSet = dataBase.getSetFarmNum(getInt(0));
 					break;
 				case 2://По названию лекарства
 					cout << "Введите название лекарства" << endl;
-					dataBase.getSetName(getString());
+					subSet = dataBase.getSetName(getString());
 					break;
 				case 3://По дате поступления
 					cout << "Введите дату поступления" << endl;
 					getline(cin, str);
 					date = dateFromString(str);
-					dataBase.getSetDate(date);
+					subSet = dataBase.getSetDate(date);
 					break;
 				case 0:
 					option = 5;
 					break;
 				}
-				if (option != 0)
+				if (option != 5)
 				{
-					printTargetMenu();
-					option = getInt(option, 0, 2);
-					switch (option)
+					if (!subSet.isEmpty())
 					{
-					case 1:
-						dataBase.printSetToConsole();
-						break;
-					case 2:
-						inputFile = false;
-						fileName = getFileName(inputFile);
-						dataBase.saveSetToFile(fileName);
-						break;
-					case 0:
-						break;
+						printTargetMenu();
+						option = getInt(option, 0, 2);
+						switch (option)
+						{
+						case 1:
+							consoleOutput(subSet);
+							break;
+						case 2:
+							inputFile = false;
+							fileName = getFileName(inputFile);
+							subSet.fileOutput(fstream(fileName, ios::out));
+							break;
+						case 0:
+							break;
+						}
+					}
+					else {
+						cout << "Искомые записи не найдены!" << endl;
 					}
 				}
 

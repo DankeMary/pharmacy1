@@ -87,6 +87,7 @@ string getFileName(bool input)
 	return name;
 }
 
+
 int getInt(int basic, int min, int max)
 {
 	int num;

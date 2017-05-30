@@ -18,7 +18,7 @@ class NameComparator
 			return m1.name < m2.name;
 		}
 };
-
+/*
 class QuantityComparator
 {
 	public:
@@ -44,7 +44,7 @@ public:
 		return m1.price < m2.price;
 	}
 };
-
+*/
 class ArrivalComparator
 {
 public:
@@ -53,7 +53,7 @@ public:
 		return m1.arrival < m2.arrival;
 	}
 };
-
+/*
 class ShelfComparator
 {
 public:
@@ -61,4 +61,4 @@ public:
 	{
 		return m1.shelfLife < m2.shelfLife;
 	}
-};
+};*/

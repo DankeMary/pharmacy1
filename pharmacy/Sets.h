@@ -45,7 +45,7 @@ public:
 	}
 
 };
-
+/*
 class QuantitySet
 {
 public:
@@ -113,7 +113,7 @@ public:
 	}
 
 };
-
+*/
 class DateSet
 {
 public:
@@ -136,7 +136,7 @@ public:
 	}
 
 };
-
+/*
 class ShelfSet
 {
 public:
@@ -157,6 +157,6 @@ public:
 		return *set;
 	}
 
-};
+};*/
 
 
