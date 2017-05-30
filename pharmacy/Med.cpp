@@ -16,23 +16,7 @@ Date::Date()
 
 void Date::getDate() {
 	string str;
-	cout << "Введите день: ";
-	while (day < 1 || day > 30)
-	{
-		getline(cin, str);
-		day = stoi(str);
-		if (day < 1 || day > 30)
-			cout << "Ошибка! Повторите ввод" << endl;
-	}
-
-	cout << "Введите месяц: ";
-	while (month < 1 || month > 12)
-	{
-		getline(cin, str);
-		month = stoi(str);
-		if (month < 1 || month > 12)
-			cout << "Ошибка! Повторите ввод" << endl;
-	}
+	bool stop = false;
 
 	cout << "Введите год: ";
 	while (year < 1970 || year > 2020)
@@ -42,6 +26,50 @@ void Date::getDate() {
 		if (year < 1900 || year > 2020)
 			cout << "Ошибка! Повторите ввод" << endl;
 	}
+
+	cout << "Введите месяц: ";
+	while (month < 1 || month > 12)
+	{
+		getline(cin, str);
+		month = stoi(str);
+		
+		if (month < 1 || month > 12)
+			cout << "Ошибка! Повторите ввод" << endl;
+	}
+
+	cout << "Введите день: ";
+	while (!stop)
+	{
+		getline(cin, str);
+		day = stoi(str);
+		switch (month) {
+		case 1:
+		case 3:
+		case 5:
+		case 7:
+		case 8:
+		case 10:
+		case 12:
+			if (day < 1 || day > 31)
+				cout << "Ошибка! Повторите ввод" << endl;
+			else stop = true;
+			break;
+		case 4:
+		case 6:
+		case 9:
+		case 11:
+			if (day < 1 || day > 30)
+			cout << "Ошибка! Повторите ввод" << endl;
+			else stop = true;
+			break;
+		case 2:
+			if (day < 1 || day > 28)
+				cout << "Ошибка! Повторите ввод" << endl;
+			else stop = true;
+			break;
+		}
+	}
+	
 }
 bool Date::operator==(const Date& other) const
 {
@@ -56,20 +84,20 @@ bool operator<(const Date& other, const Date& other2)
 {
 	if (other.year < other2.year)
 		return true;
-	else
-		if (other.year > other2.year)
-			return false;
-		else
-			if (other.month < other2.month)
-				return  true;
-			else
-				if (other.month > other2.month)
-					return false;
-				else
-					if (other.day < other2.day)
-						return true;
-					else
-						return false;
+
+	if (other.year > other2.year)
+		return false;
+
+	if (other.month < other2.month)
+		return  true;
+
+	if (other.month > other2.month)
+		return false;
+
+	if (other.day < other2.day)
+		return true;
+
+	return false;
 }
 
 ostream& operator<<(ostream &os, const Date &date)
@@ -130,7 +158,7 @@ bool Med::operator==(const Med& other) const {
 bool Med::operator!=(const Med& other) const {
 	return !(*this == other);
 }
-
+/*
 void Med::getData()
 {
 	string str;
@@ -159,7 +187,7 @@ void Med::getData()
 	cout << "Введите срок хранения: ";
 	getline(cin, str);
 	shelfLife = stoi(str);
-}
+}*/
 
 ostream &operator<<(ostream &os, const Med &med) {
 	os << "Номер аптеки: "<< med.farmNum << "\n" <<

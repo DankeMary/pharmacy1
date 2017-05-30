@@ -93,7 +93,7 @@ public:
 	}
 
 	template<class Set>
-	vector<T> findSubset(Set set) {
+	vector<T> findSubset(Set& set) {
 		for_each(vect.begin(), vect.end(), set);
 		return set.getSet();
 	}
@@ -104,7 +104,7 @@ class PharmacyDataBase : public DataBase<Med> {
 public:
 	PharmacyDataBase() {}
 
-	PharmacyDataBase(vector<Med> _vect) {
+	PharmacyDataBase(vector<Med>& _vect) {
 		vect = _vect;
 	}
 
@@ -148,7 +148,7 @@ public:
 	}
 
 
-	void getFromFile(fstream fin) {
+	void getFromFile(fstream& fin) {
 		if (fin.is_open()) {
 			istream_iterator<Med> is(fin);
 			vect.clear();
@@ -165,7 +165,7 @@ public:
 			cout << "Файл не существует!" << endl;
 	}
 
-	void fileOutput(fstream fout) {
+	void fileOutput(fstream& fout) {
 		if (fout.is_open()) {
 			copy(vect.begin(), vect.end(), ostream_iterator<Med>(fout, "\n"));
 			fout.close();

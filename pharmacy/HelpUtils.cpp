@@ -20,6 +20,39 @@ bool boolFromString(string str)
 	else return false;
 }
 
+
+int priceFromString(string str)
+{
+	if (str.find(".") == -1)
+		return -1;
+	int i = 0;
+	while ((str[i] == ' ') && (i < str.length()))
+	{
+		i++;
+	}
+	if (str[i - 1] == ' ')
+		return -1;
+
+	int price = 0, smallPrice = 0;
+	try
+	{
+		price = stoi(str.substr(i, str.find(".") - i));
+		smallPrice = stoi(str.substr(str.find(".") + 1));
+		if (smallPrice > 99)
+			return -1;
+		price *= 100;
+		price += smallPrice;
+		return price;
+	}
+	catch (const invalid_argument& ia) {
+		return -1;
+	}
+}
+string priceToString(int price)
+{
+	return (to_string(price / 100) + '.' + to_string(price % 100));
+}
+
 Date dateFromString(string str)
 {
 	Date date = Date();
@@ -167,29 +200,24 @@ Med getMed(int number)
 	cout << endl;
 
 	cout << "Номер аптеки: "<< endl;
-	farmNum = getInt(0);
+	farmNum = getInt(0, 1);
 
 	cout << "Название: " << endl;
 	name = getString();
 
 	cout << "Количество: " << endl;
-	quantity = getInt(0);
-	/*
-	cout << "Наличие (+/-): " << endl;
-	getline(cin, str);
-	available = boolFromString(str);*/
+	quantity = getInt(0, 0);
+	
 	available = quantity > 0;
 
 	cout << "Цена: " << endl;
-	price = getDouble(0.0);
+	price = getDouble(0.0, 0);
 
 	cout << "Дата прибытия: " << endl;
-	/*getline(cin, str);
-	arrival = dateFromString(str);*/
 	arrival.getDate();
 
 	cout << "Срок хранения: " << endl;
-	shelfLife = getInt(0);
+	shelfLife = getInt(0, 1);
 	return Med(farmNum, name, quantity, available, price, arrival, shelfLife);
 }
 
@@ -209,7 +237,7 @@ Med getMed(Med basicMed, int number)
 	cout << endl;
 
 	cout << "Номер аптеки: " << endl;
-	farmNum = getInt(basicMed.farmNum);
+	farmNum = getInt(basicMed.farmNum, 1);
 
 	cout << "Название: " << endl;
 	name = getString();
@@ -217,7 +245,7 @@ Med getMed(Med basicMed, int number)
 		name = basicMed.name;
 
 	cout << "Количество: " << endl;
-	quantity = getInt(basicMed.quantity);
+	quantity = getInt(basicMed.quantity, 0);
 
 	/*cout << "Наличие (+/-): " << endl;
 	getline(cin, str);
@@ -228,7 +256,7 @@ Med getMed(Med basicMed, int number)
 	available = quantity > 0;
 
 	cout << "Цена: " << endl;
-	price = getDouble(basicMed.price);
+	price = getDouble(basicMed.price, 0);
 
 	cout << "Дата прибытия: " << endl;
 	getline(cin, str);
@@ -238,7 +266,7 @@ Med getMed(Med basicMed, int number)
 		arrival = dateFromString(str);
 
 	cout << "Срок хранения: " << endl;
-	shelfLife = getInt(basicMed.shelfLife);
+	shelfLife = getInt(basicMed.shelfLife, 1);
 
 	return Med(farmNum, name, quantity, available, price, arrival, shelfLife);
 }

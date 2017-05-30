@@ -103,9 +103,9 @@ int main()
 					case 1://По номеру аптеки
 						cout << "Введите номер аптеки" << endl;
 						if (simpleSearch)
-							found = dataBase.searchFarmNum(getInt(0), it);
+							found = dataBase.searchFarmNum(getInt(0, 1), it);
 						else
-							found = dataBase.binarySearchFarmNum(getInt(0), it);
+							found = dataBase.binarySearchFarmNum(getInt(0, 1), it);
 						break;
 					case 2://По названию лекарства
 						cout << "Введите название лекарства" << endl;
@@ -117,7 +117,8 @@ int main()
 					case 3: //По дате поступления
 						cout << "Введите дату поступления" << endl;
 						getline(cin, str);
-						date = dateFromString(str);
+						date.getDate();
+						//date = dateFromString(str);
 						if (simpleSearch)
 							found = dataBase.searchArrival(date, it);
 						else
@@ -172,7 +173,7 @@ int main()
 				{
 				case 1://По номеру аптеки
 					cout << "Введите номер аптеки" << endl;
-					subSet = dataBase.getSetFarmNum(getInt(0));
+					subSet = dataBase.getSetFarmNum(getInt(0, 1));
 					break;
 				case 2://По названию лекарства
 					cout << "Введите название лекарства" << endl;
@@ -190,14 +191,14 @@ int main()
 				}
 				if (option != 5)
 				{
+					cout << "\nКол-во найденных записей: " << subSet.size() << endl;
 					if (!subSet.isEmpty())
 					{
 						printTargetMenu();
 						option = getInt(option, 0, 2);
 						switch (option)
 						{
-						case 1:
-							cout << "\nКол-во найденных записей: " << subSet.size() << endl;
+						case 1:							
 							consoleOutput(subSet);
 							break;
 						case 2:

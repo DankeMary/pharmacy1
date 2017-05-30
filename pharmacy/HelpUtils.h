@@ -7,6 +7,8 @@ using namespace std;
 string skipFieldsNames(istream &is);
 string boolToString(bool b);
 bool boolFromString(string str);
+int priceFromString(string str);
+string priceToString(int price);
 Date dateFromString(string str); 
 string getFileName(bool input);
 string getString();

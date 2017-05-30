@@ -23,7 +23,7 @@ class Med
 		string name;
 		int quantity;
 		bool available;
-		double price;
+		double price; // 10000 = 100.00, 54321 = 543.21
 		Date arrival;
 		int shelfLife;
 		Med();
