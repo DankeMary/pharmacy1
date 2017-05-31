@@ -17,13 +17,15 @@ Date::Date()
 void Date::getDate() {
 	string str;
 	bool stop = false;
-
+	day = 0;
+	month = 0;
+	year = 1900;
 	cout << "Введите год: ";
 	while (year < 1970 || year > 2020)
 	{
 		getline(cin, str);
 		year = stoi(str);
-		if (year < 1900 || year > 2020)
+		if (year < 1970 || year > 2020)
 			cout << "Ошибка! Повторите ввод" << endl;
 	}
 

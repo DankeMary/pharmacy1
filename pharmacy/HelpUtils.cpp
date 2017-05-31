@@ -211,7 +211,8 @@ bool checkPrice(string str) {
 			break;
 		}
 	}
-
+	if (sign == -1)
+		return false;
 	size_t j = i;
 	bool result = j < str.length();
 	int dot_number = 0;
@@ -237,7 +238,10 @@ dec::decimal<2> getPrice(dec::decimal<2> basic, dec::decimal<2> min, dec::decima
 
 	str = getString();
 	if (checkPrice(str))
+	{
 		dec::fromString(str, price);
+		return price;
+	}
 	else do
 	{
 		cout << "Ошибка ввода! Повторите ввод" << endl;
@@ -277,7 +281,7 @@ Med getMed(int number)
 	
 	available = quantity > 0;
 
-	ok = false;
+	//ok = false;
 	cout << "Цена: " << endl;
 	price = getPrice(dec::decimal_cast<2>(0), dec::decimal_cast<2>(0));
 
