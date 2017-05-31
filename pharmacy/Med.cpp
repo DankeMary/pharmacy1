@@ -135,7 +135,7 @@ Med::Med()
 	arrival = Date();
 	shelfLife = 0;	
 }
-Med::Med(int farmNumTag, string nameTag, int quantTag, bool availTag, double priceTag, Date arriveTag, int lifeTag)
+Med::Med(int farmNumTag, string nameTag, int quantTag, bool availTag, dec::decimal<2> priceTag, Date arriveTag, int lifeTag)
 {
 	this->farmNum = farmNumTag;
 	name = nameTag;
@@ -194,7 +194,7 @@ ostream &operator<<(ostream &os, const Med &med) {
 		"Название лекарства: " << med.name << "\n" <<
 		"Количество: " << med.quantity << "\n" <<
 		"Наличие: " << boolToString(med.available) << "\n" <<
-		"Цена: " << med.price << "\n" <<
+		"Цена: " << dec::toString(med.price) << "\n" <<
 		"Дата поступления: " << med.arrival << "\n" << 
 		"Срок хранения: " << med.shelfLife << "\n";
 	return os;
@@ -207,7 +207,7 @@ istream& operator>>(istream &is, Med &med) {
 		med.name = skipFieldsNames(is);
 		med.quantity = stoi(skipFieldsNames(is));
 		med.available = boolFromString(skipFieldsNames(is));
-		med.price = stod(skipFieldsNames(is));
+		dec::fromString(skipFieldsNames(is), med.price);
 		med.arrival = dateFromString(skipFieldsNames(is));
 		med.shelfLife = stoi(skipFieldsNames(is));
 	}

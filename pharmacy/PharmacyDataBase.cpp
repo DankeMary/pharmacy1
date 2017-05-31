@@ -5,15 +5,17 @@
 void consoleInput(PharmacyDataBase &cont) {
 	cont.clear();
 	Med med;
-	while (true)
+	int choice = 1;
+	while (choice == 1)
 	{
 		try {
 			med = getMed();
+			cout << "" << endl;
+			choice = getInt(0, 0, 1);
 		}
 		catch (const char*) {
 			return;
 		}
-
 		cont.addItem(med);
 	}
 }

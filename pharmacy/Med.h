@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "decimal.h"
 //#include <ctime>
 
 using namespace std;
@@ -23,13 +24,13 @@ class Med
 		string name;
 		int quantity;
 		bool available;
-		double price; // 10000 = 100.00, 54321 = 543.21
+		dec::decimal<2> price; // 10000 = 100.00, 54321 = 543.21
 		Date arrival;
 		int shelfLife;
 		Med();
-		Med(int farmNumTag, string nameTag, int quantTag, bool availTag, double priceTag, Date arriveTag, int lifeTag);
+		Med(int farmNumTag, string nameTag, int quantTag, bool availTag, dec::decimal<2> priceTag, Date arriveTag, int lifeTag);
 		~Med();
-		void getData();
+		//void getData();
 		bool operator==(const Med& other) const;
 		bool operator!=(const Med& other) const;
 };

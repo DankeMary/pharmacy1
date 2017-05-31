@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "Med.h"
+#include "decimal.h"
 
 using namespace std;
 
@@ -13,6 +14,7 @@ Date dateFromString(string str);
 string getFileName(bool input);
 string getString();
 int getInt(int basic, int min = INT_MIN, int max = INT_MAX);
+dec::decimal<2> getPrice(dec::decimal<2> basic, dec::decimal<2> min = dec::decimal_cast<2>(DEC_MIN_INT64), dec::decimal<2> max = dec::decimal_cast<2>(DEC_MAX_INT64));
 double getDouble(double basic, double min = DBL_MIN, double max = DBL_MAX);
 Med getMed(int number = -1);
 Med getMed(Med basicMed, int number = -1);

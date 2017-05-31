@@ -46,10 +46,10 @@ public:
 
 class PricePredicate {
 protected:
-	double fPrice;
+	dec::decimal<2> fPrice;
 public:
 	PricePredicate();
-	PricePredicate(double aPrice);
+	PricePredicate(dec::decimal<2> aPrice);
 	bool operator() (Med med);
 	bool operator() (Med med1, Med med2);
 };

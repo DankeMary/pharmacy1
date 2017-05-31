@@ -121,17 +121,17 @@ public:
 	}
 	
 	bool binarySearchFarmNum(int aFarmNum, my_iterator &it) {
-		Med med = Med(aFarmNum, "", 0, false, 0.0, Date(), 0);
+		Med med = Med(aFarmNum, "", 0, false, dec::decimal_cast<2>(0), Date(), 0);
 		return find(FarmNumComparator(), med, it);
 	}
 
 	bool binarySearchName(string aName, my_iterator &it) {
-		Med med = Med(0, aName, 0, false, 0.0, Date(), 0);
+		Med med = Med(0, aName, 0, false, dec::decimal_cast<2>(0), Date(), 0);
 		return find(NameComparator(), med, it);
 	}
 
 	bool binarySearchArrival(Date aArrival, my_iterator &it) {
-		Med med = Med(0, "", 0, false, 0.0, aArrival, 0);
+		Med med = Med(0, "", 0, false, dec::decimal_cast<2>(0), aArrival, 0);
 		return find(ArrivalComparator(), med, it);
 	}
 

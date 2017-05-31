@@ -146,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Comparators.h" />
+    <ClInclude Include="decimal.h" />
     <ClInclude Include="HelpUtils.h" />
     <ClInclude Include="Med.h" />
     <ClInclude Include="MenuUtils.h" />

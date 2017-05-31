@@ -65,7 +65,7 @@ bool AvailablePredicate::operator()(Med med1, Med med2) {
 
 //PricePredicate
 PricePredicate::PricePredicate() {}
-PricePredicate::PricePredicate(double aPrice)
+PricePredicate::PricePredicate(dec::decimal<2> aPrice)
 {
 	fPrice = aPrice;
 }

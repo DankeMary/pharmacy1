@@ -184,12 +184,79 @@ string getString()
 	return str;
 }
 
+bool checkPrice(string str) {
+	if (str.length() == 0) {
+		return false;
+	}
+	size_t i = 0;
+	while ((i < str.length()) && ((str[i] == ' ') || (str[i] == '	'))) {
+		++i;
+	}
+	if (i >= str.length()) {
+		return false;
+	}
+	int sign = 1;
+	switch (str[i]) 
+	{
+		case '-': {
+			sign = -1;
+			++i;
+			break;
+		}
+		case '+': {
+			++i;
+			break;
+		}
+		default: {
+			break;
+		}
+	}
+
+	size_t j = i;
+	bool result = j < str.length();
+	int dot_number = 0;
+	while ((j < str.length()) && (result)) {
+		if (str[j] == '.') {
+			++dot_number;
+		}
+		result = ((str[j] >= '0') && (str[j] <= '9')) || ((str[j] == '.') && (dot_number <= 1));
+		++j;
+	}
+
+	while ((j < str.length()) && ((str[j] == ' ') || (str[j] == '	'))) {
+		++j;
+	}
+
+	return (j == str.length()) && (result);
+}
+dec::decimal<2> getPrice(dec::decimal<2> basic, dec::decimal<2> min, dec::decimal<2> max)
+{
+	bool ok = false;
+	string str;
+	dec::decimal<2> price;
+
+	str = getString();
+	if (checkPrice(str))
+		dec::fromString(str, price);
+	else do
+	{
+		cout << "Ошибка ввода! Повторите ввод" << endl;
+		str = getString();
+		if (checkPrice(str))
+		{
+			dec::fromString(str, price);
+			ok = true;
+			return price;
+		}
+	} while (!ok);
+}
+
 Med getMed(int number) 
 {
 	string name, str;
 	int farmNum, quantity, shelfLife;
-	double price;
-	bool available;
+	dec::decimal<2> price;
+	bool available, ok;
 	Date arrival;
 
 	cout << "Лекарство";
@@ -210,8 +277,11 @@ Med getMed(int number)
 	
 	available = quantity > 0;
 
+	ok = false;
 	cout << "Цена: " << endl;
-	price = getDouble(0.0, 0);
+	price = getPrice(dec::decimal_cast<2>(0), dec::decimal_cast<2>(0));
+
+	//price = getDouble(0.0, 0)
 
 	cout << "Дата прибытия: " << endl;
 	arrival.getDate();
@@ -225,8 +295,8 @@ Med getMed(Med basicMed, int number)
 {
 	string name, str;
 	int farmNum, quantity, shelfLife;
-	double price;
-	bool available;
+	dec::decimal<2> price;
+	bool available, ok;
 	Date arrival;
 
 	cout << "Лекарство";
@@ -255,8 +325,25 @@ Med getMed(Med basicMed, int number)
 		available = boolFromString(str);*/
 	available = quantity > 0;
 
+	ok = false;
 	cout << "Цена: " << endl;
-	price = getDouble(basicMed.price, 0);
+	str = getString();
+	if (str == "")
+		price = basicMed.price;
+	else
+		if (checkPrice(str))
+			dec::fromString(str, price);
+		else do
+		{
+			cout << "Ошибка ввода! Повторите ввод" << endl;
+			str = getString();
+			if (checkPrice(str))
+			{
+				dec::fromString(str, price);
+				ok = true;
+			}
+		} while (!ok);
+	//price = getDouble(basicMed.price, 0)
 
 	cout << "Дата прибытия: " << endl;
 	getline(cin, str);
