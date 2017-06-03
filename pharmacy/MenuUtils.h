@@ -1,5 +1,6 @@
 #pragma once
 
+void introMenu();
 void mainMenu();
 void printTargetMenu();
 void findMenu();

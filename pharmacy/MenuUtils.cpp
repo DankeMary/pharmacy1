@@ -4,6 +4,12 @@
 
 using namespace std;
 
+void introMenu() {
+	cout << "\n" << endl;
+	cout << " 1-Загрузить список" << endl;
+	cout << " 0-Выход" << endl;
+	cout << "\n" << endl;
+}
 void mainMenu() {
 	cout << "\n" << endl;
 	cout << "Главное меню:" << endl;

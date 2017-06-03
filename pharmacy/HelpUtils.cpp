@@ -254,6 +254,78 @@ dec::decimal<2> getPrice(dec::decimal<2> basic, dec::decimal<2> min, dec::decima
 		}
 	} while (!ok);
 }
+Date getDate(Date basic) {
+	string str;
+	Date date;
+	bool stop = false;
+	date.day = 0;
+	date.month = 0;
+	date.year = 1900;
+	cout << "Введите год: ";
+	while (date.year < 1970 || date.year > 2020)
+	{
+		getline(cin, str);
+		if (str == "")
+			date.year = basic.year;
+		else
+		{
+			date.year = stoi(str);
+			if (date.year < 1970 || date.year > 2020)
+				cout << "Ошибка! Повторите ввод" << endl;
+		}
+	}
+
+	cout << "Введите месяц: ";
+	while (date.month < 1 || date.month > 12)
+	{
+		getline(cin, str);
+		if (str == "")
+			date.year = basic.year;
+		else
+		{
+			date.month = stoi(str);
+
+			if (date.month < 1 || date.month > 12)
+				cout << "Ошибка! Повторите ввод" << endl;
+		}
+	}
+
+	cout << "Введите день: ";
+	while (!stop)
+	{
+		getline(cin, str);
+		date.day = stoi(str);
+		if (str == "")
+			date.year = basic.year;
+		switch (date.month) {
+		case 1:
+		case 3:
+		case 5:
+		case 7:
+		case 8:
+		case 10:
+		case 12:
+			if (date.day < 1 || date.day > 31)
+				cout << "Ошибка! Повторите ввод" << endl;
+			else stop = true;
+			break;
+		case 4:
+		case 6:
+		case 9:
+		case 11:
+			if (date.day < 1 || date.day > 30)
+				cout << "Ошибка! Повторите ввод" << endl;
+			else stop = true;
+			break;
+		case 2:
+			if (date.day < 1 || date.day > 28)
+				cout << "Ошибка! Повторите ввод" << endl;
+			else stop = true;
+			break;
+		}
+	}
+	return date;
+}
 
 Med getMed(int number) 
 {
@@ -288,7 +360,7 @@ Med getMed(int number)
 	//price = getDouble(0.0, 0)
 
 	cout << "Дата прибытия: " << endl;
-	arrival.getDate();
+	arrival = getDate(Date());
 
 	cout << "Срок хранения: " << endl;
 	shelfLife = getInt(0, 1);
@@ -332,7 +404,7 @@ Med getMed(Med basicMed, int number)
 	ok = false;
 	cout << "Цена: " << endl;
 	str = getString();
-	if (str == "")
+	/*if (str == "")
 		price = basicMed.price;
 	else
 		if (checkPrice(str))
@@ -346,15 +418,17 @@ Med getMed(Med basicMed, int number)
 				dec::fromString(str, price);
 				ok = true;
 			}
-		} while (!ok);
+		} while (!ok);*/
+	price = getPrice(basicMed.price, dec::decimal_cast<2>(0));
 	//price = getDouble(basicMed.price, 0)
 
 	cout << "Дата прибытия: " << endl;
-	getline(cin, str);
+	arrival = getDate(basicMed.arrival);
+	/*getline(cin, str);
 	if (str == "")
 		arrival = basicMed.arrival;
 	else
-		arrival = dateFromString(str);
+		arrival = dateFromString(str);*/
 
 	cout << "Срок хранения: " << endl;
 	shelfLife = getInt(basicMed.shelfLife, 1);

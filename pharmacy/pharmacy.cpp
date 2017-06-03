@@ -35,12 +35,15 @@ int main()
 		mainMenu();
 		option = getInt(option, 0, 5);
 		found = false;
-		if (dataBase.isEmpty() && (option != 1) && (option != 0)) 
+		//ХРЕНОВО РАБОТАЕТ!!!!!!!!!!!!!!
+		//ж
+		if ( ((option != 1) && (option != 0) || (fileName != "") && (option != 4)) && dataBase.isEmpty())
 			cout << "База данных пуста!" << endl;
 		else
 		{
 			switch (option)
 			{
+				Исправить условие!
 			case 1://Загрузить список
 				printTargetMenu();
 				option = getInt(option, 0, 2);
@@ -116,8 +119,9 @@ int main()
 						break;
 					case 3: //По дате поступления
 						cout << "Введите дату поступления" << endl;
-						getline(cin, str);
-						date.getDate();
+						//getline(cin, str);
+						date = getDate(Date());
+						//date.getDate();
 						//date = dateFromString(str);
 						if (simpleSearch)
 							found = dataBase.searchArrival(date, it);
@@ -181,8 +185,9 @@ int main()
 					break;
 				case 3://По дате поступления
 					cout << "Введите дату поступления" << endl;
-					getline(cin, str);
-					date = dateFromString(str);
+					//getline(cin, str);
+					//date = dateFromString(str);
+					date = getDate(Date());
 					subSet = dataBase.getSetDate(date);
 					break;
 				case 0:

@@ -14,65 +14,65 @@ Date::Date()
 	year = 0;
 }
 
-void Date::getDate() {
-	string str;
-	bool stop = false;
-	day = 0;
-	month = 0;
-	year = 1900;
-	cout << "Введите год: ";
-	while (year < 1970 || year > 2020)
-	{
-		getline(cin, str);
-		year = stoi(str);
-		if (year < 1970 || year > 2020)
-			cout << "Ошибка! Повторите ввод" << endl;
-	}
-
-	cout << "Введите месяц: ";
-	while (month < 1 || month > 12)
-	{
-		getline(cin, str);
-		month = stoi(str);
-		
-		if (month < 1 || month > 12)
-			cout << "Ошибка! Повторите ввод" << endl;
-	}
-
-	cout << "Введите день: ";
-	while (!stop)
-	{
-		getline(cin, str);
-		day = stoi(str);
-		switch (month) {
-		case 1:
-		case 3:
-		case 5:
-		case 7:
-		case 8:
-		case 10:
-		case 12:
-			if (day < 1 || day > 31)
-				cout << "Ошибка! Повторите ввод" << endl;
-			else stop = true;
-			break;
-		case 4:
-		case 6:
-		case 9:
-		case 11:
-			if (day < 1 || day > 30)
-			cout << "Ошибка! Повторите ввод" << endl;
-			else stop = true;
-			break;
-		case 2:
-			if (day < 1 || day > 28)
-				cout << "Ошибка! Повторите ввод" << endl;
-			else stop = true;
-			break;
-		}
-	}
-	
-}
+//void Date::getDate() {
+//	string str;
+//	bool stop = false;
+//	day = 0;
+//	month = 0;
+//	year = 1900;
+//	cout << "Введите год: ";
+//	while (year < 1970 || year > 2020)
+//	{
+//		getline(cin, str);
+//		year = stoi(str);
+//		if (year < 1970 || year > 2020)
+//			cout << "Ошибка! Повторите ввод" << endl;
+//	}
+//
+//	cout << "Введите месяц: ";
+//	while (month < 1 || month > 12)
+//	{
+//		getline(cin, str);
+//		month = stoi(str);
+//		
+//		if (month < 1 || month > 12)
+//			cout << "Ошибка! Повторите ввод" << endl;
+//	}
+//
+//	cout << "Введите день: ";
+//	while (!stop)
+//	{
+//		getline(cin, str);
+//		day = stoi(str);
+//		switch (month) {
+//		case 1:
+//		case 3:
+//		case 5:
+//		case 7:
+//		case 8:
+//		case 10:
+//		case 12:
+//			if (day < 1 || day > 31)
+//				cout << "Ошибка! Повторите ввод" << endl;
+//			else stop = true;
+//			break;
+//		case 4:
+//		case 6:
+//		case 9:
+//		case 11:
+//			if (day < 1 || day > 30)
+//			cout << "Ошибка! Повторите ввод" << endl;
+//			else stop = true;
+//			break;
+//		case 2:
+//			if (day < 1 || day > 28)
+//				cout << "Ошибка! Повторите ввод" << endl;
+//			else stop = true;
+//			break;
+//		}
+//	}
+//	
+//}
 bool Date::operator==(const Date& other) const
 {
 	return (this->year == other.year) && (this->month == other.month) && (this->day == other.day);
