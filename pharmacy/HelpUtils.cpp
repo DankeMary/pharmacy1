@@ -353,12 +353,9 @@ Med getMed(int number)
 	
 	available = quantity > 0;
 
-	//ok = false;
 	cout << "Цена: " << endl;
 	price = getPrice(dec::decimal_cast<2>(0), dec::decimal_cast<2>(0));
-
-	//price = getDouble(0.0, 0)
-
+	
 	cout << "Дата прибытия: " << endl;
 	arrival = getDate(Date());
 
@@ -382,55 +379,30 @@ Med getMed(Med basicMed, int number)
 	}
 	cout << endl;
 
-	cout << "Номер аптеки: " << endl;
+	cout << "Номер аптеки ("<< basicMed.farmNum << "): " << endl;
 	farmNum = getInt(basicMed.farmNum, 1);
 
-	cout << "Название: " << endl;
+	cout << "Название (" << basicMed.name << "): " << endl;
 	name = getString();
 	if (name == "")
 		name = basicMed.name;
 
-	cout << "Количество: " << endl;
+	cout << "Количество (" << basicMed.quantity << "): " << endl;
 	quantity = getInt(basicMed.quantity, 0);
 
-	/*cout << "Наличие (+/-): " << endl;
-	getline(cin, str);
-	if (str == "")
-		available = basicMed.available;
-	else
-		available = boolFromString(str);*/
 	available = quantity > 0;
 
 	ok = false;
-	cout << "Цена: " << endl;
+	cout << "Цена (" << basicMed.price << "): " << endl;
 	str = getString();
-	/*if (str == "")
-		price = basicMed.price;
-	else
-		if (checkPrice(str))
-			dec::fromString(str, price);
-		else do
-		{
-			cout << "Ошибка ввода! Повторите ввод" << endl;
-			str = getString();
-			if (checkPrice(str))
-			{
-				dec::fromString(str, price);
-				ok = true;
-			}
-		} while (!ok);*/
+	
 	price = getPrice(basicMed.price, dec::decimal_cast<2>(0));
-	//price = getDouble(basicMed.price, 0)
+	
 
-	cout << "Дата прибытия: " << endl;
+	cout << "Дата прибытия (" << basicMed.arrival << "): " << endl;
 	arrival = getDate(basicMed.arrival);
-	/*getline(cin, str);
-	if (str == "")
-		arrival = basicMed.arrival;
-	else
-		arrival = dateFromString(str);*/
 
-	cout << "Срок хранения: " << endl;
+	cout << "Срок хранения (" << basicMed.shelfLife << "): " << endl;
 	shelfLife = getInt(basicMed.shelfLife, 1);
 
 	return Med(farmNum, name, quantity, available, price, arrival, shelfLife);

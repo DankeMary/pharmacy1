@@ -13,6 +13,7 @@ class Date {
 		Date();
 		void getDate();
 		friend bool operator<(const Date& other, const Date& other2);
+		friend ostream& operator<<(ostream &os, const Date &date);
 		bool operator==(const Date& other) const;
 		bool operator!=(const Date& other) const;
 };

@@ -13,11 +13,10 @@ void introMenu() {
 void mainMenu() {
 	cout << "\n" << endl;
 	cout << "Главное меню:" << endl;
-	cout << " 1-Загрузить список" << endl;
-	cout << " 2-Вывести список" << endl;
-	cout << " 3-Поиск" << endl;
-	cout << " 4-Добавить" << endl;
-	cout << " 5-Выборка" << endl;
+	cout << " 1-Вывести список" << endl;
+	cout << " 2-Поиск" << endl;
+	cout << " 3-Добавить" << endl;
+	cout << " 4-Выборка" << endl;
 	cout << " 0-Выход" << endl;
 	cout << "\n" << endl;
 
