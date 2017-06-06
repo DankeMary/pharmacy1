@@ -55,13 +55,9 @@ public:
 		return vect.size() == 0;
 	}
 
-	bool addItem(T item) {
-		if (!find(item)) {
-			vect.push_back(item);
-			return true;
-		}
-
-		return false;
+	bool addItem(T item) {		
+		vect.push_back(item);
+		return true;
 	}
 
 	void remove(my_iterator &it) {

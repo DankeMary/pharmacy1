@@ -17,40 +17,8 @@ bool boolFromString(string str)
 {
 	if (str.find("+") != -1) 
 		return true;
-	else return false;
-}
-
-
-int priceFromString(string str)
-{
-	if (str.find(".") == -1)
-		return -1;
-	int i = 0;
-	while ((str[i] == ' ') && (i < str.length()))
-	{
-		i++;
-	}
-	if (str[i - 1] == ' ')
-		return -1;
-
-	int price = 0, smallPrice = 0;
-	try
-	{
-		price = stoi(str.substr(i, str.find(".") - i));
-		smallPrice = stoi(str.substr(str.find(".") + 1));
-		if (smallPrice > 99)
-			return -1;
-		price *= 100;
-		price += smallPrice;
-		return price;
-	}
-	catch (const invalid_argument& ia) {
-		return -1;
-	}
-}
-string priceToString(int price)
-{
-	return (to_string(price / 100) + '.' + to_string(price % 100));
+	else 
+		return false;
 }
 
 Date dateFromString(string str)
@@ -91,7 +59,8 @@ string skipFieldsNames(istream &is)
 		{
 			substr = str.substr(index);
 		}
-			return str.substr(index);
+
+		return str.substr(index);
 	}
 }
 
@@ -104,7 +73,7 @@ string getFileName(bool input)
 	getline(cin, name);
 	while (name == "")
 	{
-		cout << "Имя файла не должно быть пустым! Повторите ввод";
+		cout << "Имя файла не должно быть пустым! Повторите ввод" << endl;
 		getline(cin, name);
 	}
 	if (input) 
@@ -195,7 +164,9 @@ bool checkPrice(string str) {
 	if (i >= str.length()) {
 		return false;
 	}
+
 	int sign = 1;
+
 	switch (str[i]) 
 	{
 		case '-': {
@@ -207,9 +178,11 @@ bool checkPrice(string str) {
 			++i;
 			break;
 		}
-		default: {
+		case '.':
+			sign = -1;
 			break;
-		}
+		default: 			
+			break;
 	}
 	if (sign == -1)
 		return false;
@@ -230,6 +203,7 @@ bool checkPrice(string str) {
 
 	return (j == str.length()) && (result);
 }
+
 dec::decimal<2> getPrice(dec::decimal<2> basic, dec::decimal<2> min, dec::decimal<2> max)
 {
 	bool ok = false;
@@ -237,91 +211,139 @@ dec::decimal<2> getPrice(dec::decimal<2> basic, dec::decimal<2> min, dec::decima
 	dec::decimal<2> price;
 
 	str = getString();
-	if (checkPrice(str))
-	{
-		dec::fromString(str, price);
-		return price;
-	}
-	else do
-	{
-		cout << "Ошибка ввода! Повторите ввод" << endl;
-		str = getString();
+	if (str == "")
+		return basic;
+	else
 		if (checkPrice(str))
 		{
 			dec::fromString(str, price);
-			ok = true;
 			return price;
 		}
-	} while (!ok);
+		else do
+		{
+			cout << "Ошибка ввода! Повторите ввод" << endl;
+			str = getString();
+			if (checkPrice(str))
+			{
+				dec::fromString(str, price);
+				ok = true;
+				return price;
+			}
+		} while (!ok);
 }
 Date getDate(Date basic) {
 	string str;
 	Date date;
 	bool stop = false;
+
+	bool emptyStr = false;
+	if (basic < Date())
+		emptyStr = true;
+
 	date.day = 0;
 	date.month = 0;
 	date.year = 1900;
 	cout << "Введите год: ";
 	while (date.year < 1970 || date.year > 2020)
 	{
-		getline(cin, str);
-		if (str == "")
-			date.year = basic.year;
-		else
+		try
+
 		{
-			date.year = stoi(str);
-			if (date.year < 1970 || date.year > 2020)
-				cout << "Ошибка! Повторите ввод" << endl;
+			getline(cin, str);
+			if ((str == "") && !emptyStr)
+				date.year = basic.year;
+			else
+				if ((str == "") && emptyStr)
+					cout << "Ошибка! Пустая строка. Повторите ввод" << endl;
+				else
+				{
+					date.year = stoi(str);
+					if (date.year < 1970 || date.year > 2020)
+						cout << "Ошибка! Повторите ввод" << endl;
+				}
+		}
+		catch (exception)
+		{
+			cout << "Введен неверный символ! Повторите ввод" << endl;
 		}
 	}
 
 	cout << "Введите месяц: ";
 	while (date.month < 1 || date.month > 12)
 	{
-		getline(cin, str);
-		if (str == "")
-			date.year = basic.year;
-		else
+		try
 		{
-			date.month = stoi(str);
+			getline(cin, str);
+			if ((str == "") && !emptyStr)
+				date.month = basic.month;
+			else
+				if ((str == "") && emptyStr)
+					cout << "Ошибка! Пустая строка. Повторите ввод" << endl;
+				else
+				{
+					date.month = stoi(str);
 
-			if (date.month < 1 || date.month > 12)
-				cout << "Ошибка! Повторите ввод" << endl;
+					if (date.month < 1 || date.month > 12)
+						cout << "Ошибка! Повторите ввод" << endl;
+				}
+		}
+		catch (exception)
+		{
+			cout << "Введен неверный символ! Повторите ввод" << endl;
 		}
 	}
 
 	cout << "Введите день: ";
 	while (!stop)
 	{
-		getline(cin, str);
-		date.day = stoi(str);
-		if (str == "")
-			date.year = basic.year;
-		switch (date.month) {
-		case 1:
-		case 3:
-		case 5:
-		case 7:
-		case 8:
-		case 10:
-		case 12:
-			if (date.day < 1 || date.day > 31)
-				cout << "Ошибка! Повторите ввод" << endl;
-			else stop = true;
-			break;
-		case 4:
-		case 6:
-		case 9:
-		case 11:
-			if (date.day < 1 || date.day > 30)
-				cout << "Ошибка! Повторите ввод" << endl;
-			else stop = true;
-			break;
-		case 2:
-			if (date.day < 1 || date.day > 28)
-				cout << "Ошибка! Повторите ввод" << endl;
-			else stop = true;
-			break;
+		try
+		{
+			getline(cin, str);
+			if ((str == "") && !emptyStr)
+			{
+				date.day = basic.day;
+				stop = true;
+			}
+			else
+				if ((str == "") && emptyStr)
+					cout << "Ошибка! Пустая строка. Повторите ввод" << endl;
+				else
+				{
+					date.day = stoi(str);
+					switch (date.month) {
+					case 1:
+					case 3:
+					case 5:
+					case 7:
+					case 8:
+					case 10:
+					case 12:
+						if (date.day < 1 || date.day > 31)
+							cout << "Ошибка! Повторите ввод" << endl;
+						else
+							stop = true;
+						break;
+					case 4:
+					case 6:
+					case 9:
+					case 11:
+						if (date.day < 1 || date.day > 30)
+							cout << "Ошибка! Повторите ввод" << endl;
+						else
+							stop = true;
+						break;
+					case 2:
+						if (date.day < 1 || date.day > 28)
+							cout << "Ошибка! Повторите ввод" << endl;
+						else
+							stop = true;
+						break;
+					}
+				}
+		}
+		catch (exception)
+		{
+			cout << "Введен неверный символ!Повторите ввод" << endl;
 		}
 	}
 	return date;
@@ -335,32 +357,69 @@ Med getMed(int number)
 	bool available, ok;
 	Date arrival;
 
-	cout << "Лекарство";
-	if (number != -1)
-	{
-		cout << " №" << number;
-	}
-	cout << endl;
+	cout << "Лекарство" << endl;
 
+	ok = false;
 	cout << "Номер аптеки: "<< endl;
-	farmNum = getInt(0, 1);
+	do
+	{
+		farmNum = getInt(-1, 1);
+		if (farmNum == -1)
+			cout << "Ошибка ввода (пустая строка)! Повторите ввод" << endl;
+		else
+			ok = true;
+	} while (!ok);
 
+	ok = false;
 	cout << "Название: " << endl;
-	name = getString();
+	do
+	{
+		name = getString();
+		if (name == "")
+			cout << "Ошибка ввода (пустая строка)! Повторите ввод" << endl;
+		else
+			ok = true;
+	} while (!ok);
 
+	ok = false;
 	cout << "Количество: " << endl;
-	quantity = getInt(0, 0);
-	
+	do
+	{
+		quantity = getInt(-1, 0);
+		if (quantity == -1)
+			cout << "Ошибка ввода (пустая строка)! Повторите ввод" << endl;
+		else
+			ok = true;
+	} while (!ok);
+
 	available = quantity > 0;
 
+	ok = false;
 	cout << "Цена: " << endl;
-	price = getPrice(dec::decimal_cast<2>(0), dec::decimal_cast<2>(0));
+	do
+	{
+		price = getPrice(dec::decimal_cast<2>(-1), dec::decimal_cast<2>(0));
+		if (price == dec::decimal_cast<2>(-1))
+			cout << "Ошибка ввода (пустая строка)! Повторите ввод" << endl;
+		else
+			ok = true;
+	} while (!ok);
+
 	
 	cout << "Дата прибытия: " << endl;
-	arrival = getDate(Date());
-
+	arrival = getDate(Date(1, 1, 1969));
+		
+	ok = false;
 	cout << "Срок хранения: " << endl;
-	shelfLife = getInt(0, 1);
+	do
+	{
+		shelfLife = getInt(-1, 1);
+		if(shelfLife == -1)
+			cout << "Ошибка ввода (пустая строка)! Повторите ввод" << endl;
+		else
+			ok = true;
+	} while (!ok);
+
 	return Med(farmNum, name, quantity, available, price, arrival, shelfLife);
 }
 
@@ -372,12 +431,7 @@ Med getMed(Med basicMed, int number)
 	bool available, ok;
 	Date arrival;
 
-	cout << "Лекарство";
-	if (number != -1)
-	{
-		cout << " №" << number;
-	}
-	cout << endl;
+	cout << "Лекарство" << endl;
 
 	cout << "Номер аптеки ("<< basicMed.farmNum << "): " << endl;
 	farmNum = getInt(basicMed.farmNum, 1);
@@ -394,7 +448,6 @@ Med getMed(Med basicMed, int number)
 
 	ok = false;
 	cout << "Цена (" << basicMed.price << "): " << endl;
-	str = getString();
 	
 	price = getPrice(basicMed.price, dec::decimal_cast<2>(0));
 	
@@ -407,7 +460,7 @@ Med getMed(Med basicMed, int number)
 
 	return Med(farmNum, name, quantity, available, price, arrival, shelfLife);
 }
- 
+
 
 
 

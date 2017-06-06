@@ -11,7 +11,7 @@ class Date {
 		int month;
 		int year;
 		Date();
-		void getDate();
+		Date(int d, int m, int y);
 		friend bool operator<(const Date& other, const Date& other2);
 		friend ostream& operator<<(ostream &os, const Date &date);
 		bool operator==(const Date& other) const;
@@ -25,13 +25,13 @@ class Med
 		string name;
 		int quantity;
 		bool available;
-		dec::decimal<2> price; // 10000 = 100.00, 54321 = 543.21
+		dec::decimal<2> price; 
 		Date arrival;
 		int shelfLife;
 		Med();
 		Med(int farmNumTag, string nameTag, int quantTag, bool availTag, dec::decimal<2> priceTag, Date arriveTag, int lifeTag);
 		~Med();
-		//void getData();
+		
 		bool operator==(const Med& other) const;
 		bool operator!=(const Med& other) const;
 };

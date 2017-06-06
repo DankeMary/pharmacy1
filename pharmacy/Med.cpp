@@ -9,70 +9,17 @@ using namespace std;
 //class Date and Date Utils
 Date::Date()
 {
-	day = 0;
-	month = 0;
-	year = 0;
+	day = 1;
+	month = 1;
+	year = 1970;
+}
+Date::Date(int d, int m, int y)
+{
+	day = d;
+	month = m;
+	year = y;
 }
 
-//void Date::getDate() {
-//	string str;
-//	bool stop = false;
-//	day = 0;
-//	month = 0;
-//	year = 1900;
-//	cout << "Введите год: ";
-//	while (year < 1970 || year > 2020)
-//	{
-//		getline(cin, str);
-//		year = stoi(str);
-//		if (year < 1970 || year > 2020)
-//			cout << "Ошибка! Повторите ввод" << endl;
-//	}
-//
-//	cout << "Введите месяц: ";
-//	while (month < 1 || month > 12)
-//	{
-//		getline(cin, str);
-//		month = stoi(str);
-//		
-//		if (month < 1 || month > 12)
-//			cout << "Ошибка! Повторите ввод" << endl;
-//	}
-//
-//	cout << "Введите день: ";
-//	while (!stop)
-//	{
-//		getline(cin, str);
-//		day = stoi(str);
-//		switch (month) {
-//		case 1:
-//		case 3:
-//		case 5:
-//		case 7:
-//		case 8:
-//		case 10:
-//		case 12:
-//			if (day < 1 || day > 31)
-//				cout << "Ошибка! Повторите ввод" << endl;
-//			else stop = true;
-//			break;
-//		case 4:
-//		case 6:
-//		case 9:
-//		case 11:
-//			if (day < 1 || day > 30)
-//			cout << "Ошибка! Повторите ввод" << endl;
-//			else stop = true;
-//			break;
-//		case 2:
-//			if (day < 1 || day > 28)
-//				cout << "Ошибка! Повторите ввод" << endl;
-//			else stop = true;
-//			break;
-//		}
-//	}
-//	
-//}
 bool Date::operator==(const Date& other) const
 {
 	return (this->year == other.year) && (this->month == other.month) && (this->day == other.day);
@@ -160,36 +107,6 @@ bool Med::operator==(const Med& other) const {
 bool Med::operator!=(const Med& other) const {
 	return !(*this == other);
 }
-/*
-void Med::getData()
-{
-	string str;
-	cout << "Введите номер аптеки: ";
-	getline(cin, str);
-	farmNum = stoi(str);
-
-	cout << "Введите название лекарства: ";
-	getline(cin, name);
-
-	cout << "Введите количество упаковок ";
-	getline(cin, str);
-	quantity = stoi(str);
-
-	cout << "Имеется ли лекарство в наличии? + : да; - : нет : ";
-	getline(cin, str);
-	available = boolFromString(str);
-
-	cout << "Введите стоимость 1 упаковки: ";
-	getline(cin, str);
-	price =  stod(str);
-
-	cout << "Введите дату поступления в аптеку ";
-	arrival.getDate();
-
-	cout << "Введите срок хранения: ";
-	getline(cin, str);
-	shelfLife = stoi(str);
-}*/
 
 ostream &operator<<(ostream &os, const Med &med) {
 	os << "Номер аптеки: "<< med.farmNum << "\n" <<

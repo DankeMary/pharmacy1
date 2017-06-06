@@ -29,16 +29,37 @@ int main()
 	Date date;
 	bool inputFile, simpleSearch, found;
 	vector<Med>::iterator it;
-
+	bool ok = false;
+	int helpInt;
+	string helpString;
 	while (option != 0)
 	{
 		introMenu();
-		option = getInt(option, 0, 1);
+		ok = false;
+		do
+		{
+			option = getInt(-1, 0, 1);
+			if (option == -1)
+				cout << "Ошибка ввода (пустая строка)! Повторите ввод" << endl;
+			else
+				ok = true;
+		} while (!ok);
+
 		switch (option)
 		{
 			case 1:// Загрузить список
 				printTargetMenu();
-				option = getInt(option, 0, 2);
+				ok = false;
+				do
+				{
+					option = getInt(-1, 0, 2);
+					if (option == -1)
+						cout << "Ошибка ввода (пустая строка)! Повторите ввод" << endl;
+					else
+						ok = true;
+
+				} while (!ok);
+
 				switch (option)
 				{
 					case 1:
@@ -56,7 +77,16 @@ int main()
 				while (option != 0)
 				{
 					mainMenu();
-					option = getInt(option, 0, 4);
+					ok = false;
+					do
+					{
+						option = getInt(-1, 0, 4);
+						if (option == -1)
+							cout << "Ошибка ввода (пустая строка)! Повторите ввод" << endl;
+						else
+							ok = true;
+					} while (!ok);
+
 					found = false;
 
 					if ((option != 3) && dataBase.isEmpty())
@@ -67,7 +97,15 @@ int main()
 						{				
 							case 1://Вывести список
 								printTargetMenu();
-								option = getInt(option, 0, 2);
+								ok = false;
+								do
+								{
+									option = getInt(-1, 0, 2);
+									if (option == -1)
+										cout << "Ошибка ввода (пустая строка)! Повторите ввод" << endl;
+									else
+										ok = true;
+								} while (!ok);
 								switch (option)
 								{
 									case 1:
@@ -86,7 +124,15 @@ int main()
 								break;
 							case 2://Поиск
 								searchTypeMenu();
-								option = getInt(option, 0, 2);
+								ok = false;
+								do
+								{
+									option = getInt(-1, 0, 2);
+									if (option == -1)
+										cout << "Ошибка ввода (пустая строка)! Повторите ввод" << endl;
+									else
+										ok = true;
+								} while (!ok);
 
 								switch (option)
 								{
@@ -103,26 +149,64 @@ int main()
 								if (option != 3)
 								{
 									findMenu();
-									option = getInt(option, 0, 3);
+									ok = false;
+									do
+									{
+										option = getInt(-1, 0, 3);
+										if (option == -1)
+											cout << "Ошибка ввода (пустая строка)! Повторите ввод" << endl;
+										else
+											ok = true;
+									} while (!ok);
+
 									switch (option)
 									{
 										case 1://По номеру аптеки
 											cout << "Введите номер аптеки" << endl;
+											ok = false;
+											do
+											{
+												helpInt = getInt(-1, 1);
+												if (helpInt == -1)
+													cout << "Ошибка ввода (пустая строка)! Повторите ввод" << endl;
+												else
+													ok = true;
+											} while (!ok);
+
 											if (simpleSearch)
-												found = dataBase.searchFarmNum(getInt(0, 1), it);
+												found = dataBase.searchFarmNum(helpInt, it);
 											else
-												found = dataBase.binarySearchFarmNum(getInt(0, 1), it);
+												found = dataBase.binarySearchFarmNum(helpInt, it);
 											break;
 										case 2://По названию лекарства
 											cout << "Введите название лекарства" << endl;
+											ok = false;
+											do
+											{
+												helpString = getString();
+												if (helpString == "")
+													cout << "Ошибка ввода (пустая строка)! Повторите ввод" << endl;
+												else 
+													ok = true;
+											} while (!ok);
+
 											if (simpleSearch)
-												found = dataBase.searchName(getString(), it);
+												found = dataBase.searchName(helpString, it);
 											else
-												found = dataBase.binarySearchName(getString(), it);
+												found = dataBase.binarySearchName(helpString, it);
 											break;
 										case 3: //По дате поступления
 											cout << "Введите дату поступления" << endl;
-											date = getDate(Date());
+											ok = false;
+											do
+											{
+												date = getDate(Date(1,1,1969));
+												if (date == Date(1,1,1969))
+													cout << "Ошибка ввода (пустая строка)! Повторите ввод" << endl;
+												else
+													ok = true;
+											} while (!ok);
+
 											if (simpleSearch)
 												found = dataBase.searchArrival(date, it);
 											else
@@ -135,8 +219,17 @@ int main()
 									}
 									if (found) {
 										cout << "Запись найдена\n";
+										ok = false;
 										actionsMenu();
-										option = getInt(option, 0, 3);
+										do
+										{
+											option = getInt(-1, 0, 3);
+											if (option == -1)
+												cout << "Ошибка ввода (пустая строка)! Повторите ввод" << endl;
+											else
+												ok = true;
+										} while (!ok);
+
 										while (option != 0)
 										{
 											switch (option) {
@@ -157,8 +250,16 @@ int main()
 											}
 											if (option != 0)
 											{
+												ok = false;
 												actionsMenu();
-												option = getInt(option, 0, 3);
+												do
+												{
+													option = getInt(-1, 0, 3);
+													if (option == -1)
+														cout << "Ошибка ввода (пустая строка)! Повторите ввод" << endl;
+													else
+														ok = true;
+												} while (!ok);
 											}
 										}
 									}
@@ -173,20 +274,57 @@ int main()
 								break;
 							case 4://Выборка
 								findMenu();
-								option = getInt(option, 0, 3);
+								ok = false;
+								do
+								{
+									option = getInt(-1, 0, 3);
+									if (option == -1)
+										cout << "Ошибка ввода (пустая строка)! Повторите ввод" << endl;
+									else
+										ok = true;
+								} while (!ok);
+
 								switch (option)
 								{
 									case 1://По номеру аптеки
 										cout << "Введите номер аптеки" << endl;
-										subSet = dataBase.getSetFarmNum(getInt(0, 1));
+										ok = false;
+										do
+										{
+											helpInt = getInt(-1, 1);
+											if (helpInt == -1)
+												cout << "Ошибка ввода (пустая строка)! Повторите ввод" << endl;
+											else
+												ok = true;
+										} while (!ok);
+
+										subSet = dataBase.getSetFarmNum(helpInt);
 										break;
 									case 2://По названию лекарства
 										cout << "Введите название лекарства" << endl;
-										subSet = dataBase.getSetName(getString());
+										ok = false;
+										do
+										{
+											helpString = getString();
+											if (helpString == "")
+												cout << "Ошибка ввода (пустая строка)! Повторите ввод" << endl;
+											else
+												ok = true;
+										} while (!ok);
+
+										subSet = dataBase.getSetName(helpString);
 										break;
 									case 3://По дате поступления
 										cout << "Введите дату поступления" << endl;
-										date = getDate(Date());
+										ok = false;
+										do
+										{
+											date = getDate(Date(1,1,1969));
+											if (date == Date(1,1,1969))
+												cout << "Ошибка ввода (пустая строка)! Повторите ввод" << endl;
+											else
+												ok = true;
+										} while (!ok);
 										subSet = dataBase.getSetDate(date);
 										break;
 									case 0:
@@ -194,12 +332,21 @@ int main()
 										break;
 								}
 								if (option != 5)
-								{
-									cout << "\nКол-во найденных записей: " << subSet.size() << endl;
+								{									
 									if (!subSet.isEmpty())
 									{
+										cout << "\nКол-во найденных записей: " << subSet.size() << endl;
 										printTargetMenu();
-										option = getInt(option, 0, 2);
+										ok = false;
+										do
+										{
+											option = getInt(-1, 0, 2);
+											if (option == -1)
+												cout << "Ошибка ввода (пустая строка)! Повторите ввод" << endl;
+											else
+												ok = true;
+										} while (!ok);
+
 										switch (option)
 										{
 											case 1:

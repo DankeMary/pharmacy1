@@ -18,6 +18,14 @@ class NameComparator
 			return m1.name < m2.name;
 		}
 };
+class ArrivalComparator
+{
+public:
+	bool operator() (Med m1, Med m2)
+	{
+		return m1.arrival < m2.arrival;
+	}
+};
 /*
 class QuantityComparator
 {
@@ -45,14 +53,7 @@ public:
 	}
 };
 */
-class ArrivalComparator
-{
-public:
-	bool operator() (Med m1, Med m2)
-	{
-		return m1.arrival < m2.arrival;
-	}
-};
+
 /*
 class ShelfComparator
 {

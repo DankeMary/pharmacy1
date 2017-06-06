@@ -45,6 +45,28 @@ public:
 	}
 
 };
+class DateSet
+{
+public:
+	vector<Med> *set;
+	Date arrival;
+
+	DateSet(Date aDate)
+	{
+		arrival = aDate;
+		set = new vector<Med>();
+	}
+
+	void operator()(Med med) {
+		if (arrival == med.arrival)
+			set->push_back(med);
+	}
+	vector<Med> getSet()
+	{
+		return *set;
+	}
+
+};
 /*
 class QuantitySet
 {
@@ -114,28 +136,7 @@ public:
 
 };
 */
-class DateSet
-{
-public:
-	vector<Med> *set;
-	Date arrival;
 
-	DateSet(Date aDate)
-	{
-		arrival = aDate;
-		set = new vector<Med>();
-	}
-
-	void operator()(Med med) {
-		if (arrival == med.arrival)
-			set->push_back(med);
-	}
-	vector<Med> getSet()
-	{
-		return *set;
-	}
-
-};
 /*
 class ShelfSet
 {
