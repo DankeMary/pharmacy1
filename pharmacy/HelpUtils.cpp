@@ -103,12 +103,20 @@ int getInt(int basic, int min, int max)
 				return basic;
 			else
 			{
-				num = stoi(str);
-				if (num < min || num > max) 
+				/*try
+				{*/
+					num = stoi(str);
+					if (num < min || num > max)
+					{
+						cout << "Значение вне допустимого диапазона ( " << min << " ... " << max << " ) Повторите ввод " << endl;
+					}
+					else
+						return num;
+				/*}
+				catch (...)
 				{
-					cout << "Значение вне допустимого диапазона ( " << min << " ... " << max << " ) Повторите ввод " << endl;					
-				} else 
-					return num;
+					cout << "Введен неверный символ! Повторите ввод" << endl;
+				}*/
 			}
 		}
 		catch (exception) {
@@ -118,33 +126,6 @@ int getInt(int basic, int min, int max)
 	
 }
 
-double getDouble(double basic, double min, double max)
-{
-	double num;
-	string str;
-	while (true)
-	{
-		try {
-			getline(cin, str);
-			if (str == "")
-				return basic;
-			else
-			{
-				num = stod(str);
-				if (num < min || num > max)
-				{
-					cout << "Значение вне допустимого диапазона. Повторите ввод " << endl;
-				}
-				else 
-					return num;
-			}
-		}
-		catch (exception) {
-			cout << "Введен неверный символ! Повторите ввод" << endl;
-		}
-	}
-
-}
 string getString()
 {
 	string str;

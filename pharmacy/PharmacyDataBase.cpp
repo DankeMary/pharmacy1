@@ -21,12 +21,7 @@ void consoleInput(PharmacyDataBase &cont) {
 }
 
 void consoleOutput(PharmacyDataBase &cont) {
-	/*if (cont.isEmpty()) {
-		cout << "База данных пуста!" << endl;
-	}
-	else {*/
 		copy(cont.begin(), cont.end(), ostream_iterator<Med>(cout, "\n"));
-	//}
 }
 
 void changeMed(vector<Med>::iterator &it) {
