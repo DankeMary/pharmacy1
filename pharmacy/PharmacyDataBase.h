@@ -146,16 +146,27 @@ public:
 
 	void getFromFile(fstream& fin) {
 		if (fin.is_open()) {
-			istream_iterator<Med> is(fin);
-			vect.clear();
-			if (fin.eof()) return;
-			Med med = *is++;
-			while (!fin.fail() && !fin.eof()) {
+
+			try
+			{
+				istream_iterator<Med> is(fin);
+				vect.clear();
+				if (fin.eof()) return;
+				Med med = *is++;
+				while (!fin.fail() && !fin.eof())
+				{
+					addItem(med);
+					med = *is++;
+				}
 				addItem(med);
-				med = *is++;
+			
 			}
-			addItem(med);
-			fin.close();
+			catch (exception)
+			{
+				cout << "Файл поврежден или пуст!" << endl;
+				vect.clear();
+			}
+			fin.close();			
 		}
 		else
 			cout << "Файл не существует!" << endl;

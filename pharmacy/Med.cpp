@@ -101,7 +101,10 @@ Med::~Med()
 }
 
 bool Med::operator==(const Med& other) const {
-	return this->name == other.name;
+	bool result;
+
+	return ((this->farmNum == other.farmNum) && (this->name == other.name) && (this->quantity == other.quantity) &&
+		(this->price == other.price) && (this->arrival == other.arrival) && (this->shelfLife == other.shelfLife));
 }
 
 bool Med::operator!=(const Med& other) const {
@@ -120,19 +123,13 @@ ostream &operator<<(ostream &os, const Med &med) {
 }
 
 istream& operator>>(istream &is, Med &med) {
-	try
-	{
-		med.farmNum = stoi(skipFieldsNames(is));
-		med.name = skipFieldsNames(is);
-		med.quantity = stoi(skipFieldsNames(is));
-		med.available = boolFromString(skipFieldsNames(is));
-		dec::fromString(skipFieldsNames(is), med.price);
-		med.arrival = dateFromString(skipFieldsNames(is));
-		med.shelfLife = stoi(skipFieldsNames(is));
-	}
-	catch (const exception& e)
-	{
-	};
+	med.farmNum = stoi(skipFieldsNames(is,"Номер аптеки"));
+	med.name = skipFieldsNames(is, "Название лекарства");
+	med.quantity = stoi(skipFieldsNames(is, "Количество"));
+	med.available = boolFromString(skipFieldsNames(is, "Наличие"));
+	dec::fromString(skipFieldsNames(is, "Цена"), med.price);
+	med.arrival = dateFromString(skipFieldsNames(is, "Дата поступления"));
+	med.shelfLife = stoi(skipFieldsNames(is, "Срок хранения"));
 	return is;
 }
 

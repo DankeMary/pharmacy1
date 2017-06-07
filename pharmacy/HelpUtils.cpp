@@ -38,29 +38,37 @@ Date dateFromString(string str)
 }
 
 
-string skipFieldsNames(istream &is)
+string skipFieldsNames(istream &is, string fieldName)
 {
 	string str;
 	string substr = " ";
+	string helpStr;
 	getline(is, str);
 	int index = str.find(":") ;
 	if (index == -1)
 		return "";
 	else
 	{
-		while ((index <= str.length()) && (substr == " "))
-		{
-			index++;
-			substr = str[index];
-		}
-		if (index > str.length())
-			return "";
+		helpStr = str.substr(0, index);
+		if (fieldName != helpStr)
+			throw exception();
 		else
 		{
-			substr = str.substr(index);
+			while ((index <= str.length()) && (substr == " "))
+			{
+				index++;
+				substr = str[index];
+			}
+			if (index > str.length())
+				return "";
+			else
+			{
+				substr = str.substr(index);
+				return str.substr(index);
+			}
 		}
 
-		return str.substr(index);
+		
 	}
 }
 
@@ -103,20 +111,13 @@ int getInt(int basic, int min, int max)
 				return basic;
 			else
 			{
-				/*try
-				{*/
-					num = stoi(str);
-					if (num < min || num > max)
-					{
-						cout << "Значение вне допустимого диапазона ( " << min << " ... " << max << " ) Повторите ввод " << endl;
-					}
-					else
-						return num;
-				/*}
-				catch (...)
+				num = stoi(str);
+				if (num < min || num > max)
 				{
-					cout << "Введен неверный символ! Повторите ввод" << endl;
-				}*/
+					cout << "Значение вне допустимого диапазона ( " << min << " ... " << max << " ) Повторите ввод " << endl;
+				}
+				else
+					return num;
 			}
 		}
 		catch (exception) {

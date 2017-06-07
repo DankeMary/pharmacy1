@@ -1,4 +1,4 @@
-// pharmacy.cpp: определяет точку входа для консольного приложения.
+ // pharmacy.cpp: определяет точку входа для консольного приложения.
 //
 /*11. Запись о лекарственном препарате содержит поля: номер аптеки, название лекарства, 
 количество упаковок, наличие, стоимость одной упаковки, дата поступления в аптеку, 
@@ -93,11 +93,11 @@ int main()
 						cout << "База данных пуста!" << endl;
 					else
 					{
+						ok = false;
 						switch (option)
 						{				
 							case 1://Вывести список
 								printTargetMenu();
-								ok = false;
 								do
 								{
 									option = getInt(-1, 0, 2);
@@ -124,7 +124,6 @@ int main()
 								break;
 							case 2://Поиск
 								searchTypeMenu();
-								ok = false;
 								do
 								{
 									option = getInt(-1, 0, 2);
@@ -159,11 +158,12 @@ int main()
 											ok = true;
 									} while (!ok);
 
+									ok = false;
+
 									switch (option)
 									{
 										case 1://По номеру аптеки
-											cout << "Введите номер аптеки" << endl;
-											ok = false;
+											cout << "Введите номер аптеки" << endl;											
 											do
 											{
 												helpInt = getInt(-1, 1);
@@ -180,7 +180,6 @@ int main()
 											break;
 										case 2://По названию лекарства
 											cout << "Введите название лекарства" << endl;
-											ok = false;
 											do
 											{
 												helpString = getString();
@@ -197,7 +196,6 @@ int main()
 											break;
 										case 3: //По дате поступления
 											cout << "Введите дату поступления" << endl;
-											ok = false;
 											do
 											{
 												date = getDate(Date(1,1,1969));
@@ -274,7 +272,6 @@ int main()
 								break;
 							case 4://Выборка
 								findMenu();
-								ok = false;
 								do
 								{
 									option = getInt(-1, 0, 3);
@@ -284,11 +281,12 @@ int main()
 										ok = true;
 								} while (!ok);
 
+								ok = false;
+
 								switch (option)
 								{
 									case 1://По номеру аптеки
 										cout << "Введите номер аптеки" << endl;
-										ok = false;
 										do
 										{
 											helpInt = getInt(-1, 1);
@@ -302,7 +300,6 @@ int main()
 										break;
 									case 2://По названию лекарства
 										cout << "Введите название лекарства" << endl;
-										ok = false;
 										do
 										{
 											helpString = getString();
@@ -316,7 +313,6 @@ int main()
 										break;
 									case 3://По дате поступления
 										cout << "Введите дату поступления" << endl;
-										ok = false;
 										do
 										{
 											date = getDate(Date(1,1,1969));
