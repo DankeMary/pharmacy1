@@ -46,7 +46,7 @@ string skipFieldsNames(istream &is, string fieldName)
 	getline(is, str);
 	int index = str.find(":") ;
 	if (index == -1)
-		return "";
+		throw exception();
 	else
 	{
 		helpStr = str.substr(0, index);
